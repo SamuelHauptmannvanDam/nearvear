@@ -1,0 +1,416 @@
+html{
+  font-size: 16px;
+}
+
+html, body{
+  margin: 0px 4px 0px 4px;
+  font-family: 'Lexend Exa', sans-serif;
+}
+
+
+body{
+  overflow-y: scroll;
+}
+
+
+flexBox{
+  display: flex;
+  /* outline: red solid 1px; */
+  height: 96vh;
+  height: calc(var(--vh, 1vh) * 100);  
+  justify-content: center;
+}
+
+img{
+  /* outline: blue solid 1px; */
+  /* position: absolute;
+  left: 8px; */
+  height: calc(20px + (30 - 20) * ((100vw - 300px) / (1800 - 300)));
+  cursor: pointer;
+}
+
+
+centeringBox{
+
+  display: flex;
+  /* outline: purple solid 1px; */
+  /* justify-content: space-between; */
+  /* justify-content: center; */
+ 
+  width: 100%;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  min-width: 280px;
+
+}
+
+talkTitle {
+
+  /* display: block; */
+  /* outline: red solid 1px; */
+  width: 100%;
+  font-size: calc(14px + (30 - 14) * ((100vw - 300px) / (1800 - 300)));
+  font-weight: bold;
+  font-family: 'Lexend Exa', sans-serif;
+  /* text-align: center; */
+  cursor: pointer;
+
+}
+
+
+
+topBox{
+  padding-top: 4px;
+  /* outline: green solid 1px; */
+  display: block;
+  border-bottom: 1px solid black; 
+
+}
+
+descriptionDeletionButton{
+  display: block;
+  /* outline: black solid 1px; */
+  text-align: right;
+  font-size: 40px;
+  cursor: pointer;
+
+}
+
+centerGrowthBox{
+
+  display: flex;
+  /* outline: yellow solid 1px; */
+  flex-grow: 1; 
+  align-items: center;
+  justify-content: center;
+  
+}
+
+centeringVerticallyBox{
+
+
+  /* outline: blue solid 1px; */
+  display: block;
+
+  /* justify-content: center; */
+  flex-grow: 1; 
+
+}
+
+
+
+
+
+deviceSpecific {
+  
+  /* outline: red solid 1px; */
+  display: block;
+  padding: 5px 00px 5px 00px;
+
+  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+  font-family: 'Lexend Exa', sans-serif;
+  /* text-align: center; */
+  line-height: 1.6;
+
+}
+
+description {
+  
+  /* outline: red solid 1px; */
+  padding: 4px 0px 4px 0px;
+  display: block;
+  font-size: calc(12px + (20 - 12) * ((100vw - 300px) / (1800 - 300)));
+  font-family: 'Lexend Exa', sans-serif;
+  /* text-align: center; */
+  font-weight: bold;
+
+}
+
+
+
+textarea {
+
+  flex-grow: 1; 
+  /* outline: red solid 1px; */
+  display: block;
+
+  max-height: 70vh;
+  height: 180px;
+  
+  background-color: white;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  outline: none;
+  /* background-color: grey; */
+
+  padding: 40px;
+  width: calc(100% - 82px); /* Removes both padding and border */
+  resize: vertical;
+  /* min-height: 40px; */
+  
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+  /* font-weight: bold; */
+  font-family: 'Lexend Exa', sans-serif;
+  line-height: 1.6;
+
+  border: 1px solid black;
+  /* border-radius: 40px; */
+  margin: 00px 0px 8px 0px;
+
+}
+
+
+send {
+
+  display: block;
+  /* background-color: #004D40; */
+  width: calc(100% - 42px); /* Removes both padding and border */
+  padding: 20px 20px 20px 20px;
+ 
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 40px;
+
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+  font-weight: bold;
+  font-family: 'Lexend Exa', sans-serif;
+  text-align: center;
+  color: black;
+  background-color: white;
+    
+}
+
+send:hover {
+
+  background-color: black;
+  /* background-color: #004D40; */
+  /* background-color: #00695C; */
+  color: white;
+  /* border-color: white; */
+
+}
+
+error {
+  
+  /* outline: red solid 1px; */
+  color: white;
+  padding: 5px;
+  display: block;
+  /* height: 60px; */
+  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+  font-family: 'Lexend Exa', sans-serif;
+  line-height: 1.6;
+  text-align: center;
+  /* font-weight: bold; */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  /* ---------------------------------------------------------------BOTTOM BOX */
+bottomBox{
+  /* outline: red solid 1px; */
+  border-top: 1px solid black; 
+  /* #004D40 */
+  padding: 4px 0px 4px 0px;
+  display: flex;
+  /* justify-content: space-between; */
+
+}
+
+
+talk {
+  /* outline: red solid 1px; */
+  /* flex-direction: column; */
+  
+  flex: 1 1 0;
+  width: 0;
+  /* background-color: #B2DFDB; */
+  /* background-color: #00695C; */
+  text-decoration: underline;
+  padding: 4px 0px 4px 0px;
+
+  /* border: 4px solid white; */
+  border-radius: 40px;
+
+  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+  font-weight: bold;
+  font-family: 'Lexend Exa', sans-serif;
+  text-align: center;
+  color: black;
+  overflow: hidden;
+
+  cursor: pointer;
+
+}
+
+confessIcon{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+
+
+confessButtonText{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+talk:hover {
+
+  background-color: black;
+  color: white;
+  border-color: white;
+  fill: black;
+
+}
+
+
+listen {
+
+  /* outline: red solid 1px; */
+  /* flex-grow: 1; */
+  flex: 1 0 0;
+  /* width: 0; */
+  /* margin: 0px 0px 0px 0px; */
+  /* background-color: #B2DFDB; */
+  /* background-color: #00695C; */
+
+
+  padding: 4px 0px 4px 0px;
+
+  /* border: 4px solid white; */
+  border-radius: 40px;
+
+  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+  /* font-weight: bold; */
+  font-family: 'Lexend Exa', sans-serif;
+  text-align: center;
+  color: black;
+  overflow: hidden;
+
+  cursor: pointer;
+
+}
+
+listenIcon{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+
+listenButtonText{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+listen:hover {
+
+  background-color: black;
+  color: white;
+  border-color: white;
+
+}
+
+
+yourConversations {
+ 
+  flex: 1 1 0;
+  width: 0;
+  /* margin: 0px 2px 0px 0px; */
+  /* background-color: #B2DFDB; */
+ 
+  padding: 4px 0px 4px 0px;
+
+  /* border: 4px solid white; */
+  border-radius: 40px;
+
+  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+  /* font-weight: bold; */
+  font-family: 'Lexend Exa', sans-serif;
+  text-align: center;
+  color: black;
+  /* word-wrap: break-word; */
+  overflow: hidden;
+
+  cursor: pointer;
+
+}
+
+youIcon{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+
+youButtonText{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+yourConversations:hover {
+
+  background-color: black;
+  color: white;
+  border-color: white;
+  
+}
+
+you {
+ 
+  flex: 1 1 0;
+  width: 0;
+  padding: 4px 0px 4px 0px;
+  /* border: 4px solid white; */
+  border-radius: 40px;
+
+  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+  /* font-weight: bold; */
+  font-family: 'Lexend Exa', sans-serif;
+  text-align: center;
+  color: black;
+  overflow: hidden;
+
+  cursor: pointer;
+
+}
+
+you:hover {
+
+  background-color: black;
+  color: white;
+  border-color: white;
+
+}

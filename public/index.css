@@ -1,0 +1,73 @@
+html{
+  font-size: 16px;
+}
+
+
+talkButton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    
+    border-style: solid;
+    border-width: 1px;
+
+    cursor: pointer;
+  }
+
+  
+  talkButtonTitle {
+    position: fixed;
+    top: 40%;
+    left: 25%;
+  
+    transform: translate(-50%, -50%);
+
+    font-size: calc(16px + (100 - 16) * ((100vw - 300px) / (1800 - 300)));
+    font-weight: bold;
+    font-family: 'Lexend Exa', sans-serif;
+    text-align: center;
+    
+    /* border-style: solid;
+    border-width: 4px; */
+    cursor: pointer;
+    
+  }
+
+
+  listenButton {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+   
+    
+    border-style: solid;
+    border-width: 1px;
+    background-color: black;
+
+    cursor: pointer;
+  }
+  
+
+  listenButtonTitle {
+    position: fixed;
+    top: 40%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+
+    font-size: calc(16px + (100 - 16) * ((100vw - 300px) / (1800 - 300)));
+    font-weight: bold;
+    font-family: 'Lexend Exa', sans-serif;
+    text-align: center;
+   
+
+    /* border-style: solid;
+    border-width: 4px; */
+    cursor: pointer;
+  }
+
+
