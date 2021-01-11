@@ -456,7 +456,6 @@ function removeDescription() {
   firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
           let uid = user.uid;
-          // database.ref('Users/'+uid).set({profileID: uid});   
           let rootRef = database.ref().child("Settings").child("talk").child("description").child(uid).set({
               description: "off",
           });

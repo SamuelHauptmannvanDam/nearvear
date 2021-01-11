@@ -108,7 +108,6 @@ function loginFunction(){
 }
 
 
-
 const logoutButton = document.createElement('logoutButton');
 logoutButton.innerText = "Logout";
 logoutButton.onclick = function(){logoutFunction()};
@@ -313,29 +312,6 @@ function checkEmailInfo(){
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

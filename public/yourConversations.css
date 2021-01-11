@@ -73,6 +73,15 @@ pageDescription {
 
 }
 
+descriptionDeletionButton{
+  display: block;
+  /* outline: black solid 1px; */
+  text-align: right;
+  font-size: 40px;
+  cursor: pointer;
+
+}
+
 
 conversationListBox {
   

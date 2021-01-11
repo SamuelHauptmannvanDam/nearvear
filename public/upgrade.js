@@ -34,7 +34,7 @@ function home(){
 }
 
 const pageDescription = document.createElement('pageDescription');
-pageDescription.innerHTML = "Login anywhere, by upgrading your account. After you've upgrade, you'll be able to login from any device with email and password and get your conversations on that device.<br><br>CAREFUL: Your email can ONLY be connected to one account<br><br>To upgrade a specific account, to go that device & browser and upgrade from that device & browser.";
+pageDescription.innerHTML = "Login anywhere, by upgrading your account. After you upgrade, you'll be able to login from any device with email and password and get your conversations on that device.<br><br>CAREFUL: Your email can ONLY be connected to one account<br><br>To upgrade a specific account, to go that device & browser and upgrade from that device & browser.";
 topBox.appendChild(pageDescription);
 
 
@@ -81,7 +81,53 @@ function upgradeFunction(){
             feedbackMessage.style.color = "red"
             document.getElementById("feedbackMessageID").innerHTML = "You might be trying to upgrade an account which has already been upgraded";
         });
+
+
+    addEmail()
 }
+
+
+function addEmail() {
+
+    let timestampReverse = localNumber - Object.values(firebaseTimestamp);
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let uid = user.uid;
+            
+            database.ref('Emails').child(uid).child("email").set({
+                
+                email: document.getElementById("emailInputID").value,
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                timestampReverse: timestampReverse,
+                creatorID: uid,
+                // seen: "unseen"
+                
+            });  
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

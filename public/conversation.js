@@ -567,7 +567,6 @@ function ifEmailAvailable(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
 
             // CHECKS IF YOU ARE CREATOR OR ANSWER AND SEND THE PERSON ISN*T YOU A MAIL THAT YOU*VE ANSWERED THEM
             if(uid != creatorID ){

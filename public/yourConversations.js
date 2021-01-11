@@ -48,9 +48,94 @@ function home(){
     window.location='index.html';
 }
 
+
+
+
+
+const descriptionBox = document.createElement('descriptionBox');
+// checkDescription adds the description box if settings has been set to "off"
+checkDescription()
+
+const descriptionDeletionButton = document.createElement('descriptionDeletionButton');
+descriptionDeletionButton.innerHTML = "&#10006;"
+descriptionDeletionButton.onclick = function(){removeDescription()};
+descriptionBox.appendChild(descriptionDeletionButton);
+
+
+
 const pageDescription = document.createElement('pageDescription');
-pageDescription.innerHTML = "As soon as you or someone else has answered a confession, you'll see the conversations here.<br><br>You'll only be able to see conversations and answers to your posts, given from this specific browser on this specific device<br><br>Add your email under settings, to get notified, whenever someone answers";
-topBox.appendChild(pageDescription);
+pageDescription.innerHTML = "As soon as you or someone else has answered a confession, you'll see the conversations here.<br><br>You'll only be able to see conversations and answers to your posts, given from this specific browser on this specific device<br><br>UNLESS: You upgrade your account and login on another device. Upgrading can be found under Settings<br><br>Add your email under settings, to get notified, whenever someone answers";
+descriptionBox.appendChild(pageDescription);
+
+
+
+
+function removeDescription() {
+    descriptionBox.style.display = "none";
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let uid = user.uid;
+            let rootRef = database.ref().child("Settings").child("yourConversations").child("description").child(uid).set({
+                description: "off",
+            });
+        }        
+    });
+}
+
+
+function checkDescription(){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let uid = user.uid;
+         
+            database.ref().child("Settings").child("yourConversations").child("description").child(uid).child("description").once('value').then(function(snapshot) {
+                if (snapshot.exists()) {
+                    if(snapshot.val() == "off"){
+                        // do nothing 
+                    }
+                    
+                } else{
+                    topBox.appendChild(descriptionBox);
+                } 
+
+            });
+
+
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const conversationListBox = document.createElement('conversationListBox');
 
@@ -66,8 +151,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
        
         let uid = user.uid;
-        // database.ref('Users/'+uid).set({profileID: uid});   
- 
         let rootRef = database.ref().child("yourConversations").child(uid).orderByChild('timestampReverse');
         let count = 0;
         rootRef.on("child_added", snap => {

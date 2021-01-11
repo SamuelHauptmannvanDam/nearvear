@@ -216,17 +216,6 @@ let localNumber = 999999999999999;
 database.ref('Timestamp/').set({timestamp: firebase.database.ServerValue.TIMESTAMP});
 database.ref('Timestamp/').once('value', function(snapshot){ firebaseTimestamp = snapshot.val() })
 
-// firebase.auth().onAuthStateChanged(function(user) {
-    
-//     if (user) {
-//         // User is signed in.
-//         let isAnonymous = user.isAnonymous;
-//         let uid = user.uid;
-//         // database.ref('Users/'+uid).set({profileID: uid});        
-//         // ...
-//     } 
-    
-// });
 
 function addEmail() {
 
@@ -236,7 +225,6 @@ function addEmail() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
             
             database.ref('Emails').child(uid).child("email").set({
                 
@@ -248,17 +236,6 @@ function addEmail() {
                 
             });  
 
-            database.ref('Users').child(uid).child("email").set({
-                
-                email: document.getElementById("myTextArea").value,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                timestampReverse: timestampReverse,
-                creatorID: uid,
-                // seen: "unseen"
-                
-            }); 
-
-            
         window.location='allQuestions.html';
         }
 
@@ -278,7 +255,6 @@ function checkEmailInfo(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
         
             //CHECK IF MAIL EXIST
             database.ref('Emails').child(uid).child("email").child("email").once('value').then(function(snapshot) {

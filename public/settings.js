@@ -405,7 +405,6 @@ function addEmail() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
             
             database.ref('Emails').child(uid).child("email").set({
                 
@@ -416,17 +415,6 @@ function addEmail() {
                 // seen: "unseen"
                 
             });  
-
-            database.ref('Users').child(uid).child("email").set({
-                
-                email: document.getElementById("emailTextArea").value,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                timestampReverse: timestampReverse,
-                creatorID: uid,
-                // seen: "unseen"
-                
-            }); 
-    
         }
 
         let email = document.getElementById("emailTextArea").value;
@@ -444,7 +432,6 @@ function clearEmailFunction() {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 let uid = user.uid;
-                // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
                 
                 database.ref('Emails').child(uid).child("email").update({
                     
@@ -455,17 +442,6 @@ function clearEmailFunction() {
                     // seen: "unseen"
                     
                 });  
-
-                database.ref('Users').child(uid).child("email").update({
-                    
-                    email: "",
-                    timestamp: firebase.database.ServerValue.TIMESTAMP,
-                    timestampReverse: timestampReverse,
-                    creatorID: uid,
-                    // seen: "unseen"
-                    
-                }); 
-        
             }
             
             clearEmail.innerText = "Removed";    
@@ -486,7 +462,6 @@ function setSettingsIfNotSet(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
 
             //CHECK NEW MESSAGE
             database.ref('Emails').child(uid).child("settings").child("newMessage").once('value').then(function(snapshot) {
@@ -549,7 +524,6 @@ function checkEmailInfo(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
         
             //CHECK IF MAIL EXIST
             database.ref('Emails').child(uid).child("email").child("email").once('value').then(function(snapshot) {

@@ -107,22 +107,10 @@ description.innerHTML = "New conversations starts here. Tap Converse to start a 
 descriptionBox.appendChild(description);
 
 
-
 const selectLanguage = document.createElement('selectLanguage');
 selectLanguage.innerHTML = "Select Language";
 selectLanguage.onclick = function(){ showLanguages() };
 descriptionBox.appendChild(selectLanguage);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -856,134 +844,54 @@ languageBox.appendChild(Zulu);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// -------------------------------------------------------  UPDATEBOX
+
+
+const updateBox = document.createElement('updateBox');
+checkUpdateDescription()
+
+const updateDeletionButton = document.createElement('updateDeletionButton');
+updateDeletionButton.innerHTML = "&#10006;"
+updateDeletionButton.onclick = function(){removeUpdateDescription()};
+updateBox.appendChild(updateDeletionButton);
+
+
+const updateDescription = document.createElement('updateDescription');
+updateDescription.innerHTML = "If you have any thoughts, feedback or ideas:<br />Nearvear.app@gmail.com<br /><br />Here's what we've done for you since last time:<br />11/01/2021:<br />+ Upgrade Account<br />+ Login<br /><br />Best regards, Sam"
+updateBox.appendChild(updateDescription);
+
+
+function removeUpdateDescription() {
+  updateBox.style.display = "none";
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+          let uid = user.uid;
+          let rootRef = database.ref().child("Settings").child("allQuestions").child("update").child(uid).set({
+              description: "off",
+          });
+      }        
+  });
+}
+
+
+function checkUpdateDescription(){
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+          let uid = user.uid;
+       
+          database.ref().child("Settings").child("allQuestions").child("update").child(uid).child("description").once('value').then(function(snapshot) {
+              if (snapshot.exists()) {
+                  if(snapshot.val() == "off"){
+                      // do nothing 
+                  }
+                  
+              } else{
+                topBox.appendChild(updateBox);
+              } 
+          });
+      }
+  });
+}
 
 
 
@@ -1012,6 +920,21 @@ languageBox.appendChild(Zulu);
 // ------------------------------------------------------  MIDBOX HERE
 const midBox = document.createElement('midBox');
 centeringBox.appendChild(midBox);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const onMindBox = document.createElement('onMindBox');
 midBox.appendChild(onMindBox);
@@ -1968,7 +1891,6 @@ function removeDescription() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   
             let rootRef = database.ref().child("Settings").child("allQuestions").child("description").child(uid).set({
                 description: "off",
             });
