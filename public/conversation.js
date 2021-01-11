@@ -24,9 +24,6 @@ let creatorID = localStorage.getItem("creatorID");
 let answeringID = localStorage.getItem("answeringID");
 let conversationID = localStorage.getItem("conversationID");
 
-// console.log(creatorID)
-// console.log(answeringID)
-
 let trustGiven = "not"
 
 const flexBox = document.createElement('flexBox');

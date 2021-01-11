@@ -81,175 +81,6 @@ centeringVerticallyBox{
    
 }
 
-/* ---------------------------------------------------------------onceAWeek BOX */
-newMessageBox{
-
-  display: flex;
-  /* outline: blue solid 1px; */
-  /* margin: 10px 10px 10px 10px; */
-  align-items: center;
-  min-height: 80px;
-}
-
-newMessageDescription {
-
-  /* outline: blue solid 1px; */
-  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-  font-family: 'Lexend Exa', sans-serif;
-  /* font-weight: bold; */
-  flex-grow: 1;
-  height: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));;
-  
-}
-
-newMessageButton{
-
-  /* outline: blue solid 1px; */
-  border: 1px solid black;
-  border-radius: 60px;
-  background-color: black;
-  color: white;
-  
-  /* height: 60px;
-  width: 60px; */
-  font-weight: bold;
-  font-family: 'Lexend Exa', sans-serif;
-  padding: 20px 00px 20px 00px;
-  text-align: center;
-
-  min-width: 60px;
-  /* min-height: 60px; */
-
-  cursor: pointer;
-   
-}
-
-/* ---------------------------------------------------------------someoneLoveYou BOX */
-someoneLoveYouBox{
-
-  display: flex;
-  /* outline: blue solid 1px; */
-  /* margin: 10px 10px 10px 10px; */
-  align-items: center;
-  min-height: 80px;
-
-}
-
-someoneLoveYouDescription {
-
-  /* outline: blue solid 1px; */
-  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-  font-family: 'Lexend Exa', sans-serif;
-  /* font-weight: bold; */
-  flex-grow: 1;
-  height: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));;
-  
-}
-
-someoneLoveYouButton{
-
-  /* outline: blue solid 1px; */
-  border: 1px solid black;
-  border-radius: 60px;
-  background-color: black;
-  color: white;
-  
-  /* height: 60px;
-  width: 60px; */
-  font-weight: bold;
-  font-family: 'Lexend Exa', sans-serif;
-  padding: 20px 00px 20px 00px;
-  text-align: center;
-
-  min-width: 60px;
-  /* min-height: 60px; */
-
-  cursor: pointer;
- 
-}
-
-/* ---------------------------------------------------------------onceAWeek BOX */
-onceAWeekBox{
-
-    /* outline: blue solid 1px; */
-    display: flex;
-    margin: 10px;
-    align-items: center;
-}
-
-onceAWeekDescription {
-
-    /* padding: 00px 00px 2px 00px; */
-    font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-    font-family: 'Lexend Exa', sans-serif;
-    flex-grow: 1;
-    height: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));;
-  }
-
-onceAWeekButton{
-
-     /* outline: blue solid 1px; */
-    background-color: #00695C;
-    border: 1px solid white;
-    border-radius: 60px;
-    height: 60px;
-    width: 60px;
-    min-width: 60px;
-   
-    cursor: pointer;
-}
-
-onceAWeekButton:hover {
-
-    background-color: #004D40;
-    /* background-color: #00695C; */
-    color: white;
-    border-color: white;
-
-}
-
-/* ---------------------------------------------------------------NEW FEELING BOX */
-newFeelingBox{
-
-    display: flex;
-    align-items: center;
-    /* outline: blue solid 1px; */
-    /* display: block; */
-    margin: 10px 10px 20px 10px;
-
-}
-
-newFeelingDescription {
-
-    /* padding: 00px 00px 2px 00px; */
-    font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-    font-family: 'Lexend Exa', sans-serif;
-    flex-grow: 1;
-  }
-
-newFeelingButton{
-
-    background-color: #00695C;
-     /* outline: blue solid 1px; */
-    border: 4px solid white;
-    border-radius: 60px;
-
-    height: 60px;
-    width: 60px;
-    min-width: 60px;
-
-    cursor: pointer;
-   
-}
-
-newFeelingButton:hover {
-
-    background-color: #004D40;
-    /* background-color: #00695C; */
-    color: white;
-    border-color: white;
-
-}
 
 input {
 
@@ -349,17 +180,25 @@ clearEmail:hover {
 
 }
 
-description {
+pageDescription {
 
-    display: block;
-
-    padding: 00px 00px 8px 00px;
-    text-decoration: underline;
-
-    font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-    font-family: 'Lexend Exa', sans-serif;
-    /* text-align: center; */
+  display: block;
+  padding: 4px 00px 4px 00px;
+  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+  font-family: 'Lexend Exa', sans-serif;
+  line-height: 1.6;
   
+}
+
+feedbackMessage {
+
+  display: block;
+  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+  font-family: 'Lexend Exa', sans-serif;
+  text-align: center;
+  color: white;
+  padding: 10px;
+
 }
 
 

@@ -33,6 +33,12 @@ function home(){
     window.location='index.html';
 }
 
+const pageDescription = document.createElement('pageDescription');
+pageDescription.innerHTML = "Login anywhere, by upgrading your account. After you've upgrade, you'll be able to login from any device with email and password and get your conversations on that device.<br><br>CAREFUL: Your email can ONLY be connected to one account<br><br>To upgrade a specific account, to go that device & browser and upgrade from that device & browser.";
+topBox.appendChild(pageDescription);
+
+
+
 const inputEmail = document.createElement('input');
 inputEmail.id = "emailInputID";
 inputEmail.autocomplete = "email";
@@ -46,6 +52,10 @@ inputPassword.autocomplete = "password";
 inputPassword.placeholder = "Add password";
 centeringVerticallyBox.appendChild(inputPassword);
 
+const feedbackMessage = document.createElement('feedbackMessage');
+feedbackMessage.id = "feedbackMessageID"
+feedbackMessage.innerText = "You are amazing.";
+centeringVerticallyBox.appendChild(feedbackMessage);
 
 const upgradeButton = document.createElement('upgradeButton');
 upgradeButton.innerText = "Upgrade";
@@ -63,20 +73,30 @@ function upgradeFunction(){
         .then(function(usercred) {
             var user = usercred.user;
             console.log("Anonymous account successfully upgraded", user);
+            feedbackMessage.style.color = "black"
+            document.getElementById("feedbackMessageID").innerHTML = "You've been upgraded. Try loggin into your account from another device.";
+
         }).catch(function(error) {
             console.log("Error upgrading anonymous account", error);
+            feedbackMessage.style.color = "red"
+            document.getElementById("feedbackMessageID").innerHTML = "You might be trying to upgrade an account which has already been upgraded";
         });
-
-
 }
-
 
 
 
 const alreadyHaveAnAccount = document.createElement('alreadyHaveAnAccount');
 alreadyHaveAnAccount.innerText = "Already have an account?";
-alreadyHaveAnAccount.onclick = function(){};
+alreadyHaveAnAccount.onclick = function(){goToLogin()};
 centeringVerticallyBox.appendChild(alreadyHaveAnAccount);
+
+function goToLogin(){
+    window.location='login.html';
+}
+
+
+
+
 
 const bottomBox = document.createElement('bottomBox');
 centeringBox.appendChild(bottomBox);

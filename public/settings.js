@@ -105,10 +105,79 @@ function checkYourTrustworthiness(){
 
 
 
+
+
+
+
+
+// --------------------------------------------------------- BUTTONS FOR LANGUAGE AND NOTIFICATIONS
+const descriptionButtons = document.createElement('descriptionButtons');
+descriptionButtons.innerText = "Menus:";
+descriptionButtons.className = "description"
+midBox.appendChild(descriptionButtons);
+
+
+const buttonToNofications = document.createElement('buttonToNofications');
+buttonToNofications.innerText = "Notification";
+buttonToNofications.className = "button"
+buttonToNofications.onclick = function(){notifications()};
+midBox.appendChild(buttonToNofications);
+
+
+function notifications(){
+    window.location='notifications.html';
+}
+
+
+const buttonToLanguage = document.createElement('buttonToLanguage');
+buttonToLanguage.innerText = "Language";
+buttonToLanguage.className = "button"
+buttonToLanguage.onclick = function(){language()};
+midBox.appendChild(buttonToLanguage);
+
+function language(){
+    window.location='language.html';
+}
+
+
+const descriptionUpgradeAndLogin = document.createElement('descriptionUpgradeAndLogin');
+descriptionUpgradeAndLogin.innerText = "Upgrade & Login:";
+descriptionUpgradeAndLogin.className = "description"
+midBox.appendChild(descriptionUpgradeAndLogin);
+
+const buttonToUpgrade = document.createElement('buttonToUpgrade');
+buttonToUpgrade.innerText = "Upgrade";
+buttonToUpgrade.className = "button"
+buttonToUpgrade.onclick = function(){upgrade()};
+midBox.appendChild(buttonToUpgrade);
+
+function upgrade(){
+    window.location='upgrade.html';
+}
+
+const buttonToLogin = document.createElement('butbuttonToLogintonToUpgrade');
+buttonToLogin.innerText = "Login/Logout";
+buttonToLogin.className = "button"
+buttonToLogin.onclick = function(){login()};
+midBox.appendChild(buttonToLogin);
+
+function login(){
+    window.location='login.html';
+}
+
+
+
+
+
+
+
+
+
+
 // ---------------------------------------------------------  ADD EMAIL
 
 const descriptionEmail = document.createElement('descriptionEmail');
-descriptionEmail.innerText = "Add your Email:";
+descriptionEmail.innerText = "Add your email to get notifications:";
 descriptionEmail.className = "description"
 midBox.appendChild(descriptionEmail);
 
@@ -137,41 +206,6 @@ midBox.appendChild(clearEmail);
 
 
 
-
-
-
-
-
-// --------------------------------------------------------- BUTTONS FOR LANGUAGE AND NOTIFICATIONS
-const descriptionButtons = document.createElement('descriptionButtons');
-descriptionButtons.innerText = "Menus:";
-descriptionButtons.className = "description"
-midBox.appendChild(descriptionButtons);
-
-
-const buttonToNofications = document.createElement('buttonToNofications');
-buttonToNofications.innerText = "Notifications";
-buttonToNofications.className = "button"
-buttonToNofications.onclick = function(){notifications()};
-midBox.appendChild(buttonToNofications);
-
-
-function notifications(){
-    window.location='notifications.html';
-}
-
-
-const buttonToLanguage = document.createElement('buttonToLanguage');
-buttonToLanguage.innerText = "Language";
-buttonToLanguage.className = "button"
-buttonToLanguage.onclick = function(){language()};
-midBox.appendChild(buttonToLanguage);
-
-
-
-function language(){
-    window.location='language.html';
-}
 
 
 

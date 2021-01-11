@@ -120,29 +120,29 @@ someoneFoundYouTrustworthyBox.appendChild(someoneFoundYouTrustworthyButton);
 
 
 
-// // ADD EMAIL 
+// ADD EMAIL 
 
 // const descriptionEmail = document.createElement('descriptionEmail');
 // descriptionEmail.innerText = "Add your Email:";
 // descriptionEmail.className = "description"
 // midBox.appendChild(descriptionEmail);
 
-// const textarea = document.createElement('input');
-// textarea.maxLength = 3000;
-// textarea.id = "emailTextArea";
-// textarea.autocomplete = "email";
-// textarea.placeholder = "Add Email";
-// midBox.appendChild(textarea);
+const textarea = document.createElement('input');
+textarea.maxLength = 3000;
+textarea.id = "emailTextArea";
+textarea.autocomplete = "email";
+textarea.placeholder = "Add Email";
+midBox.appendChild(textarea);
 
-// const add = document.createElement('add');
-// add.innerText = "Add Email";
-// add.onclick = function(){addEmail()};
-// midBox.appendChild(add);
+const add = document.createElement('add');
+add.innerText = "Add Email";
+add.onclick = function(){addEmail()};
+midBox.appendChild(add);
 
-// const clearEmail = document.createElement('clearEmail');
-// clearEmail.innerText = "Remove email";
-// clearEmail.onclick = function(){clearEmailFunction()};
-// midBox.appendChild(clearEmail);
+const clearEmail = document.createElement('clearEmail');
+clearEmail.innerText = "Remove email";
+clearEmail.onclick = function(){clearEmailFunction()};
+midBox.appendChild(clearEmail);
 
 
 // const descriptionTrustworthy = document.createElement('descriptionTrustworthy');
@@ -1668,23 +1668,23 @@ function toggleNewFeeling(){
 
 
 //-------------------------------------------- SHOULD BE USED TO SHOW YOU YOUR EMAIL
-// checkEmailInfo()
-// function checkEmailInfo(){
+checkEmailInfo()
+function checkEmailInfo(){
 
-//     firebase.auth().onAuthStateChanged(function(user) {
-//         if (user) {
-//             let uid = user.uid;
-//             // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let uid = user.uid;
+            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
         
-//             //CHECK IF MAIL EXIST
-//             database.ref('Emails').child(uid).child("email").child("email").once('value').then(function(snapshot) {
-//                 if (snapshot.exists()) {
-//                     textarea.placeholder = "Your current email is: " + snapshot.val();
-//                 } 
-//             });
-//         }
-//     });
-// }
+            //CHECK IF MAIL EXIST
+            database.ref('Emails').child(uid).child("email").child("email").once('value').then(function(snapshot) {
+                if (snapshot.exists()) {
+                    textarea.placeholder = snapshot.val() + " is your current email";
+                } 
+            });
+        }
+    });
+}
 
 
 

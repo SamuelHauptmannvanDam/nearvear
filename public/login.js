@@ -1,3 +1,25 @@
+firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+        let uid = user.uid;
+        console.log("We are logged in") 
+        console.log(uid) 
+
+    }  else {
+        
+        console.log("logging in anonymously.") 
+
+        firebase.auth().signInAnonymously().catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+      }
+});
+
+
 //MAIN BOX
 const flexBox = document.createElement('flexBox');
 flexBox.id = "flexBoxID";
@@ -46,27 +68,16 @@ inputPassword.autocomplete = "password";
 inputPassword.placeholder = "Add password";
 centeringVerticallyBox.appendChild(inputPassword);
 
+const feedbackMessage = document.createElement('feedbackMessage');
+feedbackMessage.id = "feedbackMessageID"
+feedbackMessage.innerText = "You are amazing.";
+centeringVerticallyBox.appendChild(feedbackMessage);
 
-const upgradeButton = document.createElement('upgradeButton');
-upgradeButton.innerText = "Login";
-upgradeButton.onclick = function(){loginFunction()};
-centeringVerticallyBox.appendChild(upgradeButton);
-
-const logoutButton = document.createElement('logoutButton');
-logoutButton.innerText = "logout";
-logoutButton.onclick = function(){logoutFunction()};
-centeringVerticallyBox.appendChild(logoutButton);
-
-
-function logoutFunction(){
-    firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-        console.log("logged out")
-
-      }).catch((error) => {
-        // An error happened.
-      });
-}
+const loginButton = document.createElement('loginButton');
+loginButton.innerText = "Login";
+loginButton.onclick = function(){loginFunction()};
+loginButton.className = "Button"
+centeringVerticallyBox.appendChild(loginButton);
 
 
 function loginFunction(){
@@ -81,76 +92,83 @@ function loginFunction(){
             let uid = user.uid;
 
             console.log("signed in!")
-       
+            window.location='yourConversations.html';
              
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
+
+            console.log("Error upgrading anonymous account", error);
+            feedbackMessage.style.color = "red"
+            document.getElementById("feedbackMessageID").innerHTML = errorMessage;
+
         });
 
 }
 
 
-firebase.auth().onAuthStateChanged(function(user) {
 
-    if (user) {
-        let uid = user.uid;
-        console.log("We are logged in") 
-        console.log(uid) 
+const logoutButton = document.createElement('logoutButton');
+logoutButton.innerText = "Logout";
+logoutButton.onclick = function(){logoutFunction()};
+logoutButton.className = "Button"
+centeringVerticallyBox.appendChild(logoutButton);
 
-    }  else {
+
+function logoutFunction(){
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        console.log("logged out")
+        feedbackMessage.style.color = "green"
+        document.getElementById("feedbackMessageID").innerHTML = "You've been logged out";
+
+      }).catch((error) => {
+        // An error happened.
         
-        console.log("logging in anonymously.") 
+        
+      });
+}
 
-        firebase.auth().signInAnonymously().catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
-        });
+var auth = firebase.auth();
 
-      }
-});
-
-
-
-
+// Email is set when running: Check Email
+let emailAddress = "null"
+const forgotPasswordButton = document.createElement('forgotPasswordButton');
+forgotPasswordButton.innerText = "Reset Passsword";
+forgotPasswordButton.onclick = function(){resetPassword(emailAddress)};
+forgotPasswordButton.className = "Button"
+centeringVerticallyBox.appendChild(forgotPasswordButton);
 
 
+function resetPassword(emailAddress){
 
+    auth.sendPasswordResetEmail(emailAddress).then(function() {
+        console.log(emailAddress)
+        // Email sent.
 
+        feedbackMessage.style.color = "green"
+        document.getElementById("feedbackMessageID").innerHTML = "An email has been sent";
+      }).catch(function(error) {
+        // An error happened.
 
+        feedbackMessage.style.color = "black"
+        document.getElementById("feedbackMessageID").innerHTML = error;
+      });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
+}
 
 
 
+const haventUpgradedYet = document.createElement('haventUpgradedYet');
+haventUpgradedYet.innerText = "Haven't upgraded yet?";
+haventUpgradedYet.onclick = function(){goToUpgrade()};
+centeringVerticallyBox.appendChild(haventUpgradedYet);
 
-
-
-
-
-
-
-
-const alreadyHaveAnAccount = document.createElement('alreadyHaveAnAccount');
-alreadyHaveAnAccount.innerText = "Already have an account?";
-alreadyHaveAnAccount.onclick = function(){};
-centeringVerticallyBox.appendChild(alreadyHaveAnAccount);
-
+function goToUpgrade(){
+    window.location='upgrade.html';
+}
 
 const bottomBox = document.createElement('bottomBox');
 centeringBox.appendChild(bottomBox);
@@ -289,6 +307,7 @@ function checkEmailInfo(){
             database.ref('Emails').child(uid).child("email").child("email").once('value').then(function(snapshot) {
                 if (snapshot.exists()) {
                     inputEmail.value = snapshot.val();
+                    emailAddress = snapshot.val();
                 } 
             });
         }
