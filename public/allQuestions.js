@@ -103,7 +103,7 @@ descriptionBox.appendChild(descriptionDeletionButton);
 
 
 const description = document.createElement('description');
-description.innerHTML = "New conversations starts here. Tap Converse to start a conversation. All conversations are 1 on 1. <br /><br />Your messages are browser & device specific. MEANING: To see answers or past conversations or messages, you have to go back to that specific browser on that specific device<br /><br /><br />Change the language of posts you want to see here, or later under Settings"
+description.innerHTML = "New conversations starts here. Tap Converse to start a conversation. All conversations are 1 on 1. <br /><br />Your messages are browser & device specific. MEANING: To see answers or past conversations or messages, you have to go back to that specific browser on that specific device<br /><br />UNLESS: you upgrade your account under Settings<br /><br />Change the language of posts you want to see here, or later under Settings"
 descriptionBox.appendChild(description);
 
 
@@ -841,11 +841,7 @@ languageBox.appendChild(Zulu);
 
 
 
-
-
-
 // -------------------------------------------------------  UPDATEBOX
-
 
 const updateBox = document.createElement('updateBox');
 checkUpdateDescription()
@@ -857,7 +853,7 @@ updateBox.appendChild(updateDeletionButton);
 
 
 const updateDescription = document.createElement('updateDescription');
-updateDescription.innerHTML = "If you have any thoughts, feedback or ideas:<br />Nearvear.app@gmail.com<br /><br />Here's what we've done for you since last time:<br />11/01/2021:<br />+ Upgrade Account<br />+ Login<br /><br />Best regards, Sam"
+updateDescription.innerHTML = "If you have any thoughts, feedback or ideas:<br />Nearvear.app@gmail.com<br /><br />Here's what I've done for you since last time:<br /><br />11/01/2021:<br />+ Upgrade Account<br />+ Login: If you upgrade your account, you'll then be able to login and see those conversations on any device you want<br />+ Added deletion of description under Conversations<br />+ Added menu for language<br />+ Added menu for notifications<br />+ Call for Sunday confession Email<br />+ Update Card<br /><br />Best regards, Sam"
 updateBox.appendChild(updateDescription);
 
 

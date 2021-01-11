@@ -155,8 +155,8 @@ updateDeletionButton{
 
 updateDescription{
   display: block;
-  /* max-height: 200px; */
-  /* overflow-y: scroll; */
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 
