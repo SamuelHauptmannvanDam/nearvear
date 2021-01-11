@@ -1,9 +1,23 @@
-// Sign in to firebase.
-firebase.auth().signInAnonymously().catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
+// Checks if user is signed in
+firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+        let uid = user.uid;
+        // console.log("We are logged in") 
+        // console.log(uid) 
+
+    }  else {
+        
+        // console.log("logging in anonymously.") 
+
+        firebase.auth().signInAnonymously().catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+      }
 });
 
 const flexBox = document.createElement('flexBox');
@@ -35,7 +49,7 @@ function home(){
 }
 
 const pageDescription = document.createElement('pageDescription');
-pageDescription.innerHTML = "As soon as you or someone else has answered a confession, you'll see the conversations here.<br><br>Remember you'll only be able to see conversations and answers to your posts, given from this specific browser on this specific device";
+pageDescription.innerHTML = "As soon as you or someone else has answered a confession, you'll see the conversations here.<br><br>You'll only be able to see conversations and answers to your posts, given from this specific browser on this specific device<br><br>Add your email under settings, to get notified, whenever someone answers";
 topBox.appendChild(pageDescription);
 
 const conversationListBox = document.createElement('conversationListBox');
@@ -278,7 +292,7 @@ function YourConversationsLink() {
 
 const you = document.createElement('you');
 // you.innerText = "You";
-you.onclick = function(){notifsLink()};
+you.onclick = function(){settingsLink()};
 you.onmouseover = function(){changeYouToWhite()};
 you.onmouseout = function(){changeYouToBlack()};
 bottomBox.appendChild(you);
@@ -300,8 +314,8 @@ function changeYouToBlack(){
     youIcon.src = 'youBlack.svg';
 }
 
-function notifsLink(){
-    window.location='notifications.html';
+function settingsLink(){
+    window.location='settings.html';
 }
 
 // If screen is taller than wide - aka phones: Use the full screen. But if wider than narrow, use the mid.

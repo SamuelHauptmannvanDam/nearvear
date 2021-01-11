@@ -1,9 +1,23 @@
-// Sign in to firebase.
-firebase.auth().signInAnonymously().catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
+// Checks if user is signed in
+firebase.auth().onAuthStateChanged(function(user) {
+
+  if (user) {
+      let uid = user.uid;
+      // console.log("We are logged in") 
+      // console.log(uid) 
+
+  }  else {
+      
+      // console.log("logging in anonymously.") 
+
+      firebase.auth().signInAnonymously().catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+      });
+
+    }
 });
 
 const talkButton = document.createElement('talkButton');

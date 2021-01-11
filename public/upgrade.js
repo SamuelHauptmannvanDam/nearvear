@@ -41,6 +41,7 @@ centeringVerticallyBox.appendChild(inputEmail);
 
 const inputPassword = document.createElement('input');
 inputPassword.id = "passwordInputID";
+inputPassword.type = "password"
 inputPassword.autocomplete = "password";
 inputPassword.placeholder = "Add password";
 centeringVerticallyBox.appendChild(inputPassword);
@@ -48,18 +49,37 @@ centeringVerticallyBox.appendChild(inputPassword);
 
 const upgradeButton = document.createElement('upgradeButton');
 upgradeButton.innerText = "Upgrade";
-upgradeButton.onclick = function(){};
+upgradeButton.onclick = function(){upgradeFunction()};
 centeringVerticallyBox.appendChild(upgradeButton);
+
+function upgradeFunction(){
+
+    var password = document.getElementById('passwordInputID').value;
+    var email = document.getElementById('emailInputID').value;
+
+    var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+
+    firebase.auth().currentUser.linkWithCredential(credential)
+        .then(function(usercred) {
+            var user = usercred.user;
+            console.log("Anonymous account successfully upgraded", user);
+        }).catch(function(error) {
+            console.log("Error upgrading anonymous account", error);
+        });
+
+
+}
+
+
+
 
 const alreadyHaveAnAccount = document.createElement('alreadyHaveAnAccount');
 alreadyHaveAnAccount.innerText = "Already have an account?";
 alreadyHaveAnAccount.onclick = function(){};
 centeringVerticallyBox.appendChild(alreadyHaveAnAccount);
 
-
 const bottomBox = document.createElement('bottomBox');
 centeringBox.appendChild(bottomBox);
-
 
 // -----------------------------------------BOTTOM BOX BUTTONS
 
@@ -88,7 +108,6 @@ function changeConfessToBlack(){
 
 
 function talkLink(){
-    
     window.location='talk.html';
 }
 
@@ -151,7 +170,7 @@ function YourConversationsLink() {
 
 const you = document.createElement('you');
 // you.innerText = "You";
-you.onclick = function(){notifsLink()};
+you.onclick = function(){settingsLink()};
 you.onmouseover = function(){changeYouToWhite()};
 you.onmouseout = function(){changeYouToBlack()};
 bottomBox.appendChild(you);
@@ -172,8 +191,8 @@ function changeYouToBlack(){
     youIcon.src = 'youBlack.svg';
 }
 
-function notifsLink(){
-    window.location='notifications.html';
+function settingsLink(){
+    window.location='settings.html';
 }
 
 
@@ -199,42 +218,6 @@ function checkEmailInfo(){
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

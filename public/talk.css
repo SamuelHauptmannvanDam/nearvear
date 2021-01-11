@@ -182,6 +182,7 @@ send {
   text-align: center;
   color: black;
   background-color: white;
+  margin-bottom: 100px;
     
 }
 
@@ -227,190 +228,217 @@ error {
 
   
 
+
   /* ---------------------------------------------------------------BOTTOM BOX */
-bottomBox{
-  /* outline: red solid 1px; */
-  border-top: 1px solid black; 
-  /* #004D40 */
-  padding: 4px 0px 4px 0px;
-  display: flex;
-  /* justify-content: space-between; */
-
-}
-
-
-talk {
-  /* outline: red solid 1px; */
-  /* flex-direction: column; */
+  bottomBox{
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
   
-  flex: 1 1 0;
-  width: 0;
-  /* background-color: #B2DFDB; */
-  /* background-color: #00695C; */
-  text-decoration: underline;
-  padding: 4px 0px 4px 0px;
-
-  /* border: 4px solid white; */
-  border-radius: 40px;
-
-  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-  font-weight: bold;
-  font-family: 'Lexend Exa', sans-serif;
-  text-align: center;
-  color: black;
-  overflow: hidden;
-
-  cursor: pointer;
-
-}
-
-confessIcon{
+    /* width: 100%; */
+    /* outline: red solid 1px; */
+    border-top: 1px solid black; 
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    background-color: white;
+    /* #004D40 */
+    padding: 4px 0px 4px 0px;
+    display: flex;
+    /* justify-content: space-between; */
+    
+  }
   
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-
-
-confessButtonText{
   
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-talk:hover {
-
-  background-color: black;
-  color: white;
-  border-color: white;
-  fill: black;
-
-}
-
-
-listen {
-
-  /* outline: red solid 1px; */
-  /* flex-grow: 1; */
-  flex: 1 0 0;
-  /* width: 0; */
-  /* margin: 0px 0px 0px 0px; */
-  /* background-color: #B2DFDB; */
-  /* background-color: #00695C; */
-
-
-  padding: 4px 0px 4px 0px;
-
-  /* border: 4px solid white; */
-  border-radius: 40px;
-
-  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-  /* font-weight: bold; */
-  font-family: 'Lexend Exa', sans-serif;
-  text-align: center;
-  color: black;
-  overflow: hidden;
-
-  cursor: pointer;
-
-}
-
-listenIcon{
+  talk {
+    /* outline: red solid 1px; */
+    /* flex-direction: column; */
+    
+    flex: 1 1 0;
+    width: 0;
+    /* background-color: #B2DFDB; */
+    /* background-color: #00695C; */
   
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-
-listenButtonText{
+    padding: 4px 0px 4px 0px;
   
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-listen:hover {
-
-  background-color: black;
-  color: white;
-  border-color: white;
-
-}
-
-
-yourConversations {
- 
-  flex: 1 1 0;
-  width: 0;
-  /* margin: 0px 2px 0px 0px; */
-  /* background-color: #B2DFDB; */
- 
-  padding: 4px 0px 4px 0px;
-
-  /* border: 4px solid white; */
-  border-radius: 40px;
-
-  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-  /* font-weight: bold; */
-  font-family: 'Lexend Exa', sans-serif;
-  text-align: center;
-  color: black;
-  /* word-wrap: break-word; */
-  overflow: hidden;
-
-  cursor: pointer;
-
-}
-
-youIcon{
+    /* border: 4px solid white; */
+    border-radius: 40px;
   
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-
-youButtonText{
+    font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+    /* font-weight: bold; */
   
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-yourConversations:hover {
-
-  background-color: black;
-  color: white;
-  border-color: white;
+    text-align: center;
+    color: black;
+    overflow: hidden;
   
-}
-
-you {
- 
-  flex: 1 1 0;
-  width: 0;
-  padding: 4px 0px 4px 0px;
-  /* border: 4px solid white; */
-  border-radius: 40px;
-
-  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-  /* font-weight: bold; */
-  font-family: 'Lexend Exa', sans-serif;
-  text-align: center;
-  color: black;
-  overflow: hidden;
-
-  cursor: pointer;
-
-}
-
-you:hover {
-
-  background-color: black;
-  color: white;
-  border-color: white;
-
-}
+    cursor: pointer;
+  
+  }
+  
+  confessIcon{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  
+  
+  confessButtonText{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  talk:hover {
+  
+    background-color: black;
+    color: white;
+    border-color: white;
+    fill: black;
+  
+  }
+  
+  
+  listen {
+  
+    /* outline: red solid 1px; */
+    /* flex-grow: 1; */
+    flex: 1 0 0;
+    /* width: 0; */
+    /* margin: 0px 0px 0px 0px; */
+    /* background-color: #B2DFDB; */
+    /* background-color: #00695C; */
+    text-decoration: underline;
+  
+    padding: 4px 0px 4px 0px;
+  
+    /* border: 4px solid white; */
+    border-radius: 40px;
+  
+    font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+    font-weight: bold;
+   
+    text-align: center;
+    color: black;
+    overflow: hidden;
+  
+    cursor: pointer;
+  
+  }
+  
+  listenIcon{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  
+  listenButtonText{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  listen:hover {
+  
+    background-color: black;
+    color: white;
+    border-color: white;
+  
+  }
+  
+  
+  yourConversations {
+   
+    flex: 1 1 0;
+    width: 0;
+    /* margin: 0px 2px 0px 0px; */
+    /* background-color: #B2DFDB; */
+   
+    padding: 4px 0px 4px 0px;
+  
+    /* border: 4px solid white; */
+    border-radius: 40px;
+  
+    font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+    /* font-weight: bold; */
+  
+    text-align: center;
+    color: black;
+    /* word-wrap: break-word; */
+    overflow: hidden;
+  
+    cursor: pointer;
+  
+  }
+  
+  conversationsIcon{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  conversationsButtonText{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  yourConversations:hover {
+  
+    background-color: black;
+    color: white;
+    border-color: white;
+    
+  }
+  
+  
+  you {
+   
+    flex: 1 1 0;
+    width: 0;
+    padding: 4px 0px 4px 0px;
+    /* border: 4px solid white; */
+    border-radius: 40px;
+  
+    font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+    /* font-weight: bold; */
+  
+    text-align: center;
+    color: black;
+    overflow: hidden;
+  
+    cursor: pointer;
+  
+  }
+  
+  youIcon{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  youButtonText{
+    
+    /* outline: red solid 1px; */
+      display: block;
+  
+  }
+  
+  you:hover {
+  
+    background-color: black;
+    color: white;
+    border-color: white;
+  
+  }
+  
+  
+  

@@ -1,14 +1,107 @@
-// Checks if user is signed in
+//MAIN BOX
+const flexBox = document.createElement('flexBox');
+flexBox.id = "flexBoxID";
+document.body.appendChild(flexBox);
+
+// CENTER HORIZONTAL
+const centeringBox = document.createElement('centeringBox');
+centeringBox.id = "CenteringBoxID";
+flexBox.appendChild(centeringBox);
+
+// my 3 main boxes
+const topBox = document.createElement('topBox');
+centeringBox.appendChild(topBox);
+
+const growthBox = document.createElement('growthBox');
+centeringBox.appendChild(growthBox);
+
+const centeringVerticallyBox = document.createElement('centeringVerticallyBox');
+growthBox.appendChild(centeringVerticallyBox);
+
+//HOME ICON
+const img = document.createElement('img'); 
+img.src = '32px.svg'; 
+img.onclick = function(){home()};
+topBox.appendChild(img);
+
+const pageTitle = document.createElement('pageTitle');
+pageTitle.innerText = " Login";
+pageTitle.onclick = function(){home()};
+topBox.appendChild(pageTitle);
+
+function home(){
+    window.location='index.html';
+}
+
+const inputEmail = document.createElement('input');
+inputEmail.id = "emailInputID";
+inputEmail.autocomplete = "email";
+inputEmail.placeholder = "Add Email";
+centeringVerticallyBox.appendChild(inputEmail);
+
+const inputPassword = document.createElement('input');
+inputPassword.id = "passwordInputID";
+inputPassword.type = "password"
+inputPassword.autocomplete = "password";
+inputPassword.placeholder = "Add password";
+centeringVerticallyBox.appendChild(inputPassword);
+
+
+const upgradeButton = document.createElement('upgradeButton');
+upgradeButton.innerText = "Login";
+upgradeButton.onclick = function(){loginFunction()};
+centeringVerticallyBox.appendChild(upgradeButton);
+
+const logoutButton = document.createElement('logoutButton');
+logoutButton.innerText = "logout";
+logoutButton.onclick = function(){logoutFunction()};
+centeringVerticallyBox.appendChild(logoutButton);
+
+
+function logoutFunction(){
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        console.log("logged out")
+
+      }).catch((error) => {
+        // An error happened.
+      });
+}
+
+
+function loginFunction(){
+
+    var password = document.getElementById('passwordInputID').value;
+    var email = document.getElementById('emailInputID').value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((user) => {
+            // Signed in 
+            // ...
+            let uid = user.uid;
+
+            console.log("signed in!")
+       
+             
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+        });
+
+}
+
+
 firebase.auth().onAuthStateChanged(function(user) {
 
     if (user) {
         let uid = user.uid;
-        // console.log("We are logged in") 
-        // console.log(uid) 
+        console.log("We are logged in") 
+        console.log(uid) 
 
     }  else {
         
-        // console.log("logging in anonymously.") 
+        console.log("logging in anonymously.") 
 
         firebase.auth().signInAnonymously().catch(function(error) {
             // Handle Errors here.
@@ -22,67 +115,45 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 
-//MAIN BOX
-const flexBox = document.createElement('flexBox');
-flexBox.id = "flexBoxID";
-document.body.appendChild(flexBox);
 
 
-// CENTER HORIZONTAL
-const centeringBox = document.createElement('centeringBox');
-centeringBox.id = "CenteringBoxID";
-flexBox.appendChild(centeringBox);
 
 
-// my 3 main boxes
-const topBox = document.createElement('topBox');
-centeringBox.appendChild(topBox);
-
-const growthBox = document.createElement('growthBox');
-centeringBox.appendChild(growthBox);
-
-const centeringVerticallyBox = document.createElement('centeringVerticallyBox');
-growthBox.appendChild(centeringVerticallyBox);
 
 
-//HOME ICON
-const img = document.createElement('img'); 
-img.src = '32px.svg'; 
-img.onclick = function(){home()};
-topBox.appendChild(img);
 
 
-const pageTitle = document.createElement('pageTitle');
-pageTitle.innerText = " Add Email";
-pageTitle.onclick = function(){home()};
-topBox.appendChild(pageTitle);
-
-function home(){
-    window.location='index.html';
-}
 
 
-const description = document.createElement('description');
-description.innerHTML = "Get notified as soon as someone love or answers your confessions";
-centeringVerticallyBox.appendChild(description);
 
 
-const textarea = document.createElement('textarea');
-textarea.maxLength = 3000;
-textarea.id = "myTextArea";
-textarea.placeholder = "Add Email";
-centeringVerticallyBox.appendChild(textarea);
 
 
-const add = document.createElement('add');
-add.innerText = "Add";
-add.onclick = function(){addEmail()};
-centeringVerticallyBox.appendChild(add);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const alreadyHaveAnAccount = document.createElement('alreadyHaveAnAccount');
+alreadyHaveAnAccount.innerText = "Already have an account?";
+alreadyHaveAnAccount.onclick = function(){};
+centeringVerticallyBox.appendChild(alreadyHaveAnAccount);
 
 
 const bottomBox = document.createElement('bottomBox');
 centeringBox.appendChild(bottomBox);
-
 
 
 // -----------------------------------------BOTTOM BOX BUTTONS
@@ -173,8 +244,6 @@ function YourConversationsLink() {
 }
 
 
-
-
 const you = document.createElement('you');
 // you.innerText = "You";
 you.onclick = function(){settingsLink()};
@@ -208,102 +277,34 @@ function settingsLink(){
 
 //Connect to database
 let database = firebase.database();
-
-let firebaseTimestamp = 0;
-let localNumber = 999999999999999;
-
-
-database.ref('Timestamp/').set({timestamp: firebase.database.ServerValue.TIMESTAMP});
-database.ref('Timestamp/').once('value', function(snapshot){ firebaseTimestamp = snapshot.val() })
-
-// firebase.auth().onAuthStateChanged(function(user) {
-    
-//     if (user) {
-//         // User is signed in.
-//         let isAnonymous = user.isAnonymous;
-//         let uid = user.uid;
-//         // database.ref('Users/'+uid).set({profileID: uid});        
-//         // ...
-//     } 
-    
-// });
-
-function addEmail() {
-
-    let timestampReverse = localNumber - Object.values(firebaseTimestamp);
-    let email = document.getElementById("myTextArea").value;
-
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
-            
-            database.ref('Emails').child(uid).child("email").set({
-                
-                email: document.getElementById("myTextArea").value,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                timestampReverse: timestampReverse,
-                creatorID: uid,
-                // seen: "unseen"
-                
-            });  
-
-            database.ref('Users').child(uid).child("email").set({
-                
-                email: document.getElementById("myTextArea").value,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                timestampReverse: timestampReverse,
-                creatorID: uid,
-                // seen: "unseen"
-                
-            }); 
-
-            
-        window.location='allQuestions.html';
-        }
-
-    });
-
- 
-  
-}
-
+database.ref();
 
 //-------------------------------------------- SHOULD BE USED TO SHOW YOU YOUR EMAIL
-
-// NOT IN USE
 checkEmailInfo()
 function checkEmailInfo(){
-
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
-            // database.ref('Users/'+uid).set({profileID: uid});   // Adds userToken if needed.
-        
             //CHECK IF MAIL EXIST
             database.ref('Emails').child(uid).child("email").child("email").once('value').then(function(snapshot) {
-
                 if (snapshot.exists()) {
-                    textarea.placeholder = snapshot.val() + " is your current email";
-                
+                    inputEmail.value = snapshot.val();
                 } 
             });
-
-            //CHECK SETTINGS
-            database.ref('Emails').child(uid).child("settings").once('value').then(function(snapshot) {
-
-                if (snapshot.exists()) {
-                    console.log(snapshot.val() + "EXISTS!")
-                
-                } else{
-                    // console.log("NOPE!")
-                }
-            });
-
-
         }
     });
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

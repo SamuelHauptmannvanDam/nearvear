@@ -1,9 +1,23 @@
-// Sign in to firebase.
-firebase.auth().signInAnonymously().catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
+// Checks if user is signed in
+firebase.auth().onAuthStateChanged(function(user) {
+
+  if (user) {
+      let uid = user.uid;
+      // console.log("We are logged in") 
+      // console.log(uid) 
+
+  }  else {
+      
+      // console.log("logging in anonymously.") 
+
+      firebase.auth().signInAnonymously().catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+      });
+
+    }
 });
 
 
@@ -1007,11 +1021,13 @@ moreButton.innerHTML = "MORE"
 moreButton.onclick = function(){getNextOnMindItems()}
 midBox.appendChild(moreButton);
 
+
+
+// -----------------------------------------BOTTOM BOX BUTTONS
+
 const bottomBox = document.createElement('bottomBox');
 bottomBox.id = "bottomBoxID";
 centeringBox.appendChild(bottomBox);
-
-// -----------------------------------------BOTTOM BOX BUTTONS
 
 const talk = document.createElement('talk');
 // talk.innerText = "Confess";
@@ -1075,6 +1091,22 @@ const yourConversations = document.createElement('yourConversations');
 yourConversations.onclick = function(){YourConversationsLink()};
 bottomBox.appendChild(yourConversations);
 
+function YourConversationsLink() {
+  
+  // change Notification Light To Seen
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      let uid = user.uid;
+
+      // Changes the color of the "conversation button" under allQuestions, to indicate someone answered you haven't seen.
+      database.ref('Settings').child("yourConversations").child("notificationLight").child(uid).set({
+        seen: "seen",
+      }); 
+      window.location='yourConversations.html';
+    }
+  });
+}
+
 checkNotificationLight()
 function checkNotificationLight(){
 
@@ -1116,25 +1148,11 @@ function changeConversationsToBlack(){
   conversationsIcon.src = 'conversationsBlack.svg';
 }
 
-function YourConversationsLink() {
-  
-  // change Notification Light To Seen
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      let uid = user.uid;
 
-      // Changes the color of the "conversation button" under allQuestions, to indicate someone answered you haven't seen.
-      database.ref('Settings').child("yourConversations").child("notificationLight").child(uid).set({
-        seen: "seen",
-      }); 
-      window.location='yourConversations.html';
-    }
-  });
-}
 
 const you = document.createElement('you');
 // you.innerText = "You";
-you.onclick = function(){notifsLink()};
+you.onclick = function(){settingsLink()};
 you.onmouseover = function(){changeYouToWhite()};
 you.onmouseout = function(){changeYouToBlack()};
 bottomBox.appendChild(you);
@@ -1156,9 +1174,55 @@ function changeYouToBlack(){
     youIcon.src = 'youBlack.svg';
 }
 
-function notifsLink(){
-    window.location='notifications.html';
+function settingsLink(){
+    window.location='settings.html';
 }
+
+// -----------------------------------------BOTTOM BOX BUTTONS ENDS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Connect to database
 let database = firebase.database();
@@ -1740,9 +1804,7 @@ function changeIcon(loveIconID, messageID, creatorID){
             });      
         } 
     });
-
 }
-
 
 
 

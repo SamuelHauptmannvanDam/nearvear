@@ -1,14 +1,31 @@
-// Sign in to firebase.
-firebase.auth().signInAnonymously().catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
-  });
+// Checks if user is signed in
+firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+        let uid = user.uid;
+        // console.log("We are logged in") 
+        // console.log(uid) 
+
+    }  else {
+        
+        // console.log("logging in anonymously.") 
+
+        firebase.auth().signInAnonymously().catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+      }
+});
 
 let creatorID = localStorage.getItem("creatorID");
 let answeringID = localStorage.getItem("answeringID");
 let conversationID = localStorage.getItem("conversationID");
+
+// console.log(creatorID)
+// console.log(answeringID)
 
 let trustGiven = "not"
 
@@ -123,23 +140,21 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 
-
-
 function updateTrustworthiness(){
-
+    console.log(trustGiven)
      // READ IF TRUST HAS BEEN GIVEN OR NOT
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
         let uid = user.uid;
 
-            database.ref().child("Trust").child(creatorID).child(peopleYouTrust).child(answeringID).child("trustGiven").once('value').then(function(snapshot) {
-
+            database.ref().child("Trust").child(creatorID).child("peopleYouTrust").child(answeringID).child("trustGiven").once('value').then(function(snapshot) {
+                
                 if(snapshot.exists()){
                     
                     if(trustGiven == "not"){
                         trustGiven = "null"
-        
-                        database.ref().child("Trust").child(creatorID).child(peopleYouTrust).child(answeringID).update({
+                       
+                        database.ref().child("Trust").child(creatorID).child("peopleYouTrust").child(answeringID).update({
                             trustGiven: "has",
                         }); 
                         
@@ -147,7 +162,8 @@ function updateTrustworthiness(){
                     } 
                     if(trustGiven == "has") {
                         trustGiven = "null"
-                        database.ref().child("Trust").child(creatorID).child(peopleYouTrust).child(answeringID).update({
+                        
+                        database.ref().child("Trust").child(creatorID).child("peopleYouTrust").child(answeringID).update({
                             trustGiven: "not",
                         }); 
                       
@@ -155,9 +171,9 @@ function updateTrustworthiness(){
                     }
                     
                 } else {
-                    // database.ref().child("Trust").child(creatorID).child(peopleYouTrust).child(answeringID).update({
-                    //     trustGiven: "not",
-                    // });
+                    database.ref().child("Trust").child(creatorID).child("peopleYouTrust").child(answeringID).update({
+                        trustGiven: "not",
+                    });
                 }
             });
 
@@ -172,13 +188,13 @@ function updateTrustworthiness(){
             
             let uid = user.uid;
                 // Checks if already sent a mail, if not: Sends one.
-            database.ref('Trust').child(creatorID).child(peopleYouTrust).child(answeringID).child("send").once('value').then(function(snapshot) {
+            database.ref('Trust').child(creatorID).child("peopleYouTrust").child(answeringID).child("send").once('value').then(function(snapshot) {
                 
                 // IF IT*S NOT IT HAS NOT BEEN SEND BEFORE AKA IF IT IS NOT "sent" then we won't continue.
                 if(snapshot.val() == null){
                     
                     // update to sent and sent the mail
-                    database.ref("Trust").child(creatorID).child(peopleYouTrust).child(answeringID).update({send: "sent"});   
+                    database.ref("Trust").child(creatorID).child("peopleYouTrust").child(answeringID).update({send: "sent"});   
 
                     // SEND EMAIL IF SETTING IS ON:
                     //CHECK IF SETTING IS ON OR OFF
@@ -208,7 +224,7 @@ function updateTrustworthiness(){
     });
 }
 
-
+// checkTrustworthiness()
 function checkTrustworthiness() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -223,7 +239,7 @@ function checkTrustworthiness() {
             });
 
             // READ IF TRUST HAS BEEN GIVEN OR NOT
-            database.ref().child("Trust").child(creatorID).child(answeringID).child("trustGiven").once('value').then(function(snapshot) {
+            database.ref().child("Trust").child(creatorID).child("peopleYouTrust").child(answeringID).child("trustGiven").once('value').then(function(snapshot) {
 
                 if(snapshot.exists()){
                     trustGiven = snapshot.val();
@@ -271,12 +287,6 @@ function subtractOneFromTrustworthiness() {
         }
     });
 }
-
-
-
-
-
-
 
 
 // -----------------------------------------BOTTOM BOX 
@@ -379,7 +389,7 @@ function YourConversationsLink() {
 
 const you = document.createElement('you');
 // you.innerText = "You";
-you.onclick = function(){notifsLink()};
+you.onclick = function(){settingsLink()};
 you.onmouseover = function(){changeYouToWhite()};
 you.onmouseout = function(){changeYouToBlack()};
 bottomBox.appendChild(you);
@@ -401,8 +411,8 @@ function changeYouToBlack(){
     youIcon.src = 'youBlack.svg';
 }
 
-function notifsLink(){
-    window.location='notifications.html';
+function settingsLink(){
+    window.location='settings.html';
 }
 
 
@@ -463,13 +473,6 @@ function sendMessage() {
     } else{
 
         let timestampReverse = localNumber - Object.values(firebaseTimestamp);
-
-        firebase.auth().signInAnonymously().catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
-          });
 
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
