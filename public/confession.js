@@ -467,10 +467,6 @@ function getOnMindItem(){
             converseButton.appendChild(converseButtonText); 
 
 
-
-
-
-
             // SHARE BUTTON
             const shareButton = document.createElement('shareButton');
             shareButton.id = "shareButtonID"

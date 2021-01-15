@@ -584,8 +584,8 @@ function ifEmailAvailable(){
                                 SecureToken : "be6c47f3-9c8d-4152-a520-ef4d31d618d1",
                                 To : snapshot.val(),
                                 From : "nearvear.app@gmail.com",
-                                Subject : "Someone answered your confession <3",
-                                Body : "Someone answered your confession <3<br>Here, take a look: nearvear.com/yourConversations.html<br><br>If you ever need to unsubscribe: nearvear.com/notifications.html<br>Best regards, the Nearvear Team<br><br>Fun fact: Nearvear is misspelling of nærvær, which means to be present<br>If you ever have feedback or thoughts, just reply to this email and we'll get right back to you"
+                                Subject : "The confessor answered you back!",
+                                Body : "The confessor answered you back!<3<br>Here, take a look: nearvear.com/yourConversations.html<br><br>If you ever need to unsubscribe: nearvear.com/notifications.html<br>Best regards, the Nearvear Team<br><br>Fun fact: Nearvear is misspelling of nærvær, which means to be present<br>If you ever have feedback or thoughts, just reply to this email and we'll get right back to you"
                             
                             }).then(
                                 //  message => alert(message)
