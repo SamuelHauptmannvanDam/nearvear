@@ -3,12 +3,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     if (user) {
         let uid = user.uid;
-        // console.log("We are logged in") 
-        // console.log(uid) 
 
     }  else {
         
-        // console.log("logging in anonymously.") 
+   
 
         firebase.auth().signInAnonymously().catch(function(error) {
             // Handle Errors here.
@@ -19,6 +17,25 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       }
 });
+
+
+//Connect to database
+let database = firebase.database();
+
+let firebaseTimestamp = 0;
+let localNumber = 999999999999999;
+
+database.ref('Timestamp/').set({timestamp: firebase.database.ServerValue.TIMESTAMP});
+database.ref('Timestamp/').once('value', function(snapshot){ firebaseTimestamp = snapshot.val() })
+
+// GET DATA FROM LINK
+var vars = [], hash;
+var hashes = window.location.href.slice(window.location.href.indexOf('?')).split('?');
+const messageID = hashes[1];
+let language = hashes[2];
+
+
+
 
 // CONCEPT IS SIMPLE: 
 // FLEXBOX KEEPS SCREEN AREA
@@ -38,7 +55,7 @@ const topBox = document.createElement('topBox');
 centeringBox.appendChild(topBox);
 
 const imgLogo = document.createElement('img'); 
-imgLogo.src = '32px.svg'; 
+imgLogo.src = '192px.svg'; 
 imgLogo.style.height = "calc(20px + (30 - 20) * ((100vw - 300px) / (1800 - 300)))";
 imgLogo.onclick = function(){home()};
 topBox.appendChild(imgLogo); 
@@ -68,136 +85,52 @@ collectiveLoveImg.style.height = "12px";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// const descriptionBox = document.createElement('descriptionBox');
+// checkDescription adds the description box if settings has been set to "off"
+// checkDescription()
+
+// const descriptionDeletionButton = document.createElement('descriptionDeletionButton');
+// descriptionDeletionButton.innerHTML = "&#10006;"
+// descriptionDeletionButton.onclick = function(){removeDescription()};
+// descriptionBox.appendChild(descriptionDeletionButton);
+
+// const description = document.createElement('description');
+// description.innerHTML = "Forgiving is a public endevor. You need to be trustworthy to be able to participate in forgiving.<br /><br />Trustworthy is given by confessors to great answers in 1 on 1 conversations.<br />Tap Converse on the confession to give a great answer<br /><br />Find out how Trustworthy you are under Settings"
+// descriptionBox.appendChild(description);
+
+function checkDescription(){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let uid = user.uid;
+         
+            database.ref().child("Settings").child("converse").child("description").child(uid).child("description").once('value').then(function(snapshot) {
+                if (snapshot.exists()) {
+                    if(snapshot.val() == "off"){
+                        // do nothing 
+                    }
+                    
+                } else{
+                    topBox.appendChild(descriptionBox);
+                } 
+
+            });
+
+
+        }
+    });
+}
+
+function removeDescription() {
+    descriptionBox.style.display = "none";
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let uid = user.uid;
+            let rootRef = database.ref().child("Settings").child("converse").child("description").child(uid).set({
+                description: "off",
+            });
+        }        
+    });
+}
 
 
 
@@ -211,9 +144,158 @@ collectiveLoveImg.style.height = "12px";
 const midBox = document.createElement('midBox');
 centeringBox.appendChild(midBox);
 
+const onMindItem = document.createElement('onMindItem');
+midBox.appendChild(onMindItem);
+
+const debateItems = document.createElement('debateItems');
+midBox.appendChild(debateItems);
+
+// -----------------------------------------BOTTOM BOX 
+
 const bottomBox = document.createElement('bottomBox');
 bottomBox.id = "bottomBoxID";
 centeringBox.appendChild(bottomBox);
+
+
+// -----------------------------------------BOTTOM BOX INPUT
+
+// ----------------------------------------- CHECK TRUSTWORTH
+const bottomBoxInput = document.createElement('bottomBoxInput');
+bottomBox.prepend(bottomBoxInput);
+// firebase.auth().onAuthStateChanged(function(user) {
+
+//     if (user) {
+//         let uid = user.uid;
+        
+//         // CHECK YOUR TRUSTWORTHINESS:
+//         database.ref().child("Trust").child(uid).child("trustworthiness").once('value').then(function(snapshot) {
+//             if (snapshot.exists()) {
+//                 if(0 <= snapshot.val()){
+
+//                     bottomBox.prepend(bottomBoxInput);
+                
+//                 } 
+//             } 
+//         });
+//     } 
+// });
+
+const textarea = document.createElement('textarea');
+textarea.id = "TextAreaID";
+textarea.placeholder = "Acknowledge and forgive"
+textarea.maxLength = 10000;
+bottomBoxInput.appendChild(textarea);
+
+
+const send = document.createElement('send');
+send.onmouseover = function(){changeSendToBlack()};
+send.onmouseout = function(){changeSendToWhite()};
+send.onclick = function(){sendMessage()};
+bottomBoxInput.appendChild(send);
+
+const sendIcon = document.createElement('img'); 
+sendIcon.src = 'sendBlack.svg'; 
+sendIcon.style.height = "calc(20px + (48 - 20) * ((100vw - 300px) / (1800 - 300)))";
+send.appendChild(sendIcon); 
+
+function changeSendToBlack(){
+    sendIcon.src = 'sendWhite.svg';
+}
+
+function changeSendToWhite(){
+    sendIcon.src = 'sendBlack.svg';
+}
+
+const sendText = document.createElement('sendText');
+sendText.innerText = "Send"
+send.appendChild(sendText);
+
+
+
+function sendMessage(){
+
+    firebase.auth().onAuthStateChanged(function(user) {
+
+        //TO GET A DAMN PUSH ID
+        let postsRef = database.ref();
+        let newPostRef = postsRef.push();
+        let pushID = newPostRef.key;
+
+        let timestampReverse = localNumber - Object.values(firebaseTimestamp);
+
+        if (user) {
+            let uid = user.uid;
+      
+            database.ref('Forgive').child(messageID).child(pushID).set({
+                message: document.getElementById("TextAreaID").value,
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                timestampReverse: timestampReverse,
+                messageCreatorID: uid,
+            }); 
+
+
+            textarea.value = ''; 
+            textarea.style.height = "50px"
+        }  
+    });
+}
+
+// ------------------------------------------ GETS THE MESSAGES
+function getMessages(creatorID){
+    firebase.auth().onAuthStateChanged(function(user) {
+    
+        if (user) {
+           
+            let uid = user.uid;
+            let rootRef = database.ref().child("Forgive").child(messageID);
+    
+            rootRef.on("child_added", snap => {
+    
+                let message = snap.child("message").val(); //The message
+                let messageCreatorID = snap.child("messageCreatorID").val(); // poster of message ID, to give color to your posts.
+    
+                const conversationItem = document.createElement('conversationItem');
+                conversationItem.style.borderColor = "black";
+         
+                console.log("messageCreatorID: " + messageCreatorID)
+                if(messageCreatorID == creatorID){
+                    conversationItem.style.borderColor = "white";
+                }
+                conversationItem.innerText = message;
+                debateItems.append(conversationItem);
+                // conversationBox.scrollTo(0, 5000000);
+    
+            });
+           
+        }
+    
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const bottomBoxMenu = document.createElement('bottomBoxMenu');
+bottomBox.appendChild(bottomBoxMenu);
 
 // -----------------------------------------BOTTOM BOX BUTTONS
 
@@ -222,7 +304,7 @@ const talk = document.createElement('talk');
 talk.onclick = function(){talkLink()};
 talk.onmouseover = function(){changeConfessToWhite()};
 talk.onmouseout = function(){changeConfessToBlack()};
-bottomBox.appendChild(talk);
+bottomBoxMenu.appendChild(talk);
 
 const confessIcon = document.createElement('img'); 
 confessIcon.src = 'confess.svg'; 
@@ -250,7 +332,7 @@ const listen = document.createElement('listen');
 listen.onclick = function(){allQuestionsLink()};
 listen.onmouseover = function(){changeListenToWhite()};
 listen.onmouseout = function(){changeListenToBlack()};
-bottomBox.appendChild(listen);
+bottomBoxMenu.appendChild(listen);
 
 const listenIcon = document.createElement('img'); 
 listenIcon.src = 'confessionsBlack.svg'; 
@@ -280,7 +362,7 @@ function allQuestionsLink() {
 
 const yourConversations = document.createElement('yourConversations');
 yourConversations.onclick = function(){YourConversationsLink()};
-bottomBox.appendChild(yourConversations);
+bottomBoxMenu.appendChild(yourConversations);
 
 checkNotificationLight()
 function checkNotificationLight(){
@@ -288,7 +370,6 @@ function checkNotificationLight(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         let uid = user.uid;
-        // console.log(uid)
         database.ref().child("Settings").child("yourConversations").child("notificationLight").child(uid).child("seen").once('value').then(function(snapshot) {
             if (snapshot.exists()) {
                 if(snapshot.val() == "unseen"){
@@ -351,7 +432,7 @@ const you = document.createElement('you');
 you.onclick = function(){settingsLink()};
 you.onmouseover = function(){changeYouToWhite()};
 you.onmouseout = function(){changeYouToBlack()};
-bottomBox.appendChild(you);
+bottomBoxMenu.appendChild(you);
 
 const youIcon = document.createElement('img'); 
 youIcon.src = 'youBlack.svg'; 
@@ -374,14 +455,6 @@ function settingsLink(){
     window.location='settings.html';
 }
 
-//Connect to database
-let database = firebase.database();
-
-let firebaseTimestamp = 0;
-let localNumber = 999999999999999;
-
-database.ref('Timestamp/').set({timestamp: firebase.database.ServerValue.TIMESTAMP});
-database.ref('Timestamp/').once('value', function(snapshot){ firebaseTimestamp = snapshot.val() })
 
 
 getOnMindItem()
@@ -392,23 +465,15 @@ function getOnMindItem(){
         let uid = user.uid;
 
       
-
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?')).split('?');
-        const referenceID = hashes[1];
-        let language = hashes[2];
-
- 
-        database.ref().child("allQuestionsByLanguage").child(language).child(referenceID).once('value').then(function(snapshot) {
+        database.ref().child("allQuestionsByLanguage").child(language).child(messageID).once('value').then(function(snapshot) {
 
             count = 1;
-            let messageID = snapshot.child("messageID").val(); // ID of the confession
+            // let messageID = snapshot.child("messageID").val(); // ID of the confession
             let creatorID = snapshot.child("creatorID").val(); // Original Poster
+            getMessages(creatorID);
             let message = snapshot.child("message").val(); //The message
             let language = snapshot.child("language").val();
 
-
-            const onMindItem = document.createElement('onMindItem');
 
             const onMindItemText = document.createElement('onMindItemText');
             onMindItemText.id = "onMindItemText"+ count;
@@ -432,10 +497,11 @@ function getOnMindItem(){
 
             const loveIcon = document.createElement('img'); 
             loveIcon.src = 'loveEmptyBlack.svg'; 
+            loveIcon.style.height = "calc(20px + (48 - 20) * ((100vw - 300px) / (1800 - 300)))";
         
             // Chances icon
             let loveValue = snapshot.child(uid).child("love").val();
-            // console.log(loveValue)
+        
             if(loveValue == "filled"){
                 loveIcon.src = 'loveFilledBlack.svg'; 
             } 
@@ -458,6 +524,7 @@ function getOnMindItem(){
 
             const converseIcon = document.createElement('img'); 
             converseIcon.src = 'converseBlack.svg'; 
+            converseIcon.style.height = "calc(20px + (48 - 20) * ((100vw - 300px) / (1800 - 300)))";
             converseIcon.id = "converseIcon"+ count;
             let converseIconID = converseIcon.id;
             converseButton.appendChild(converseIcon); 
@@ -477,6 +544,7 @@ function getOnMindItem(){
 
             const shareIcon = document.createElement('img'); 
             shareIcon.src = 'shareBlack.svg'; 
+            shareIcon.style.height = "calc(20px + (48 - 20) * ((100vw - 300px) / (1800 - 300)))";
             shareIcon.id = "shareIcon"+ count;
             let shareIconID = shareIcon.id;
             shareButton.appendChild(shareIcon); 
@@ -504,7 +572,7 @@ function getOnMindItem(){
             }
 
             // ADD THE OnMindIem
-            midBox.prepend(onMindItem);
+            // midBox.prepend(onMindItem);
 
             // midBox.scrollTo(0, 50000);
             let onMindItemHeight = document.getElementById(onMindItemTextID).offsetHeight;
@@ -558,7 +626,6 @@ function shareIconToBlack(shareIconID){
 function changeIcon(loveIconID, messageID, creatorID, language){
 
     let specificLoveIcon = document.getElementById(loveIconID)
-
 
     // Check filename if heart icon is empty or filled
     let isEmpty = specificLoveIcon.src.includes("loveEmptyWhite");
@@ -623,15 +690,13 @@ function changeIcon(loveIconID, messageID, creatorID, language){
                             database.ref('Emails').child(creatorID).child("email").child("email").once('value').then(function(snapshot) {
                                     
                                 Email.send({
-                                    SecureToken : "be6c47f3-9c8d-4152-a520-ef4d31d618d1",
+                                    SecureToken : "09c52732-99c5-44e6-816a-e3bc58d79108",
                                     To : snapshot.val(),
                                     From : "nearvear.app@gmail.com",
                                     Subject : "Someone loved your confession <3",
                                     Body : "Someone loved your confessions <3<br>See. People do care. You are never pushy, greedy or not worth listening to <br>Get it out: https://nearvear.com//talk.html<br><br>If you ever need to unsubscribe: https://nearvear.com//notifications.html<br>Best regards, the Nearvear Team<br><br>Fun fact: Nearvear is misspelling of nærvær, which means to be present<br>If you ever have feedback or thoughts, just reply to this email and we'll get right back to you"
                                 
-                                }).then(
-                                   // message => alert(message)
-                                );
+                                })
                             });
                         }
                     });
@@ -657,7 +722,6 @@ function loveIconToWhite(loveIconID){
     if(isFilled == true){
         specificLoveIcon.src = 'loveFilledWhite.svg';
     }
-
 }
 
 function loveIconToBlack(loveIconID){
@@ -675,7 +739,6 @@ function loveIconToBlack(loveIconID){
     if(isFilled == true){
         specificLoveIcon.src = 'loveFilledBlack.svg';
     }
-
 }
 
 
@@ -722,12 +785,9 @@ function conversationLink(message, messageID, creatorID) {
             window.location = 'conversation.html';
 
          }
-
          });
-
         }
     });
-    
 }
 
 
@@ -746,8 +806,6 @@ function shareLink(messageID){
     document.body.removeChild(copyTextArea);
   
   }
-
-
 
 // TEXT EDITING
 // THE REASON I DO IT SO CONVOLUTED IS TO PRACTISE ELEMENTS AND SEE THE LIMITS. THEN REDUCE, CLEARLY IT COULD BE REDUCED HEAVILY, BUT HAD TO GET HERE TO SEE IT.
@@ -772,7 +830,7 @@ function editText(onMindItemID, onMindItemHeight, count, editID, message, messag
 }
 
 
-// THE REASON I DO IT SO CONCOLUTED IS TO PRACTISE ELEMENTS AND SEE THE LIMITS.
+// THE REASON I DO IT SO CONVOLUTED IS TO PRACTISE ELEMENTS AND SEE THE LIMITS.
 function saveText(onMindItemTextareaID, onMindItemHeight, count, saveID, message, messageID, creatorID){
 
 
@@ -828,16 +886,12 @@ function checkScreenAspect(){
     let aspectFactor = w/h;
    
     if(aspectFactor>1){
+
         document.getElementById("CenteringBoxID").style.width = "33%";
-     
-        
         document.getElementById("bottomBoxID").style.width = "calc(33% - 4px)";
 
-
     } else { // UI changes for phones / screens taller than wide.
-        // topBox.style.display = "none";
-        // centeringBox.style.outline = "white solid 1px";
-        // centeringBox.style.padding = "00px 00px 00px 00px";
+     
         document.getElementById("bottomBoxID").style.width = "calc(100% - 16px)";
    
     }

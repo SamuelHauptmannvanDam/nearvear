@@ -20,7 +20,7 @@ growthBox.appendChild(centeringVerticallyBox);
 
 //HOME ICON
 const img = document.createElement('img'); 
-img.src = '32px.svg'; 
+img.src = '192px.svg'; 
 img.onclick = function(){home()};
 topBox.appendChild(img);
 
@@ -36,7 +36,6 @@ function home(){
 const pageDescription = document.createElement('pageDescription');
 pageDescription.innerHTML = "Login anywhere, by upgrading your account. After you upgrade, you'll be able to login from any device with email and password and get your conversations on that device.<br><br>CAREFUL: Your email can ONLY be connected to one account<br><br>To upgrade a specific account, to go that device & browser and upgrade from that device & browser.";
 topBox.appendChild(pageDescription);
-
 
 
 const inputEmail = document.createElement('input');
@@ -109,39 +108,14 @@ function addEmail() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const alreadyHaveAnAccount = document.createElement('alreadyHaveAnAccount');
-alreadyHaveAnAccount.innerText = "Already have an account?";
+alreadyHaveAnAccount.innerText = "Already upgraded? Login";
 alreadyHaveAnAccount.onclick = function(){goToLogin()};
 centeringVerticallyBox.appendChild(alreadyHaveAnAccount);
 
 function goToLogin(){
     window.location='login.html';
 }
-
-
-
 
 
 const bottomBox = document.createElement('bottomBox');

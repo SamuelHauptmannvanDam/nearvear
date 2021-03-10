@@ -42,7 +42,7 @@ growthBox.appendChild(centeringVerticallyBox);
 
 //HOME ICON
 const img = document.createElement('img'); 
-img.src = '32px.svg'; 
+img.src = '192px.svg'; 
 img.onclick = function(){home()};
 topBox.appendChild(img);
 
@@ -54,6 +54,10 @@ topBox.appendChild(pageTitle);
 function home(){
     window.location='index.html';
 }
+
+const pageDescription = document.createElement('pageDescription');
+pageDescription.innerHTML = "Login anywhere, but first you need to upgrade your account. After you upgrade, you'll be able to login from any device with email and password and get your conversations on that device.<br><br>CAREFUL: Your email can ONLY be connected to one account<br><br>To upgrade a specific account, to go that device & browser and upgrade from that device & browser.";
+topBox.appendChild(pageDescription);
 
 const inputEmail = document.createElement('input');
 inputEmail.id = "emailInputID";
@@ -104,7 +108,6 @@ function loginFunction(){
             document.getElementById("feedbackMessageID").innerHTML = errorMessage;
 
         });
-
 }
 
 
@@ -116,6 +119,12 @@ centeringVerticallyBox.appendChild(logoutButton);
 
 
 function logoutFunction(){
+    if((firebase.auth().currentUser.email) == null){
+        feedbackMessage.style.color = "red"
+        document.getElementById("feedbackMessageID").innerHTML = "You aren't logged in";
+
+    } else {
+
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
         console.log("logged out")
@@ -125,8 +134,10 @@ function logoutFunction(){
       }).catch((error) => {
         // An error happened.
         
-        
       });
+    }
+
+
 }
 
 var auth = firebase.auth();

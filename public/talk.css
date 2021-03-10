@@ -80,7 +80,7 @@ descriptionDeletionButton{
 centerGrowthBox{
 
   display: flex;
-  /* outline: yellow solid 1px; */
+  /* outline: red solid 1px; */
   flex-grow: 1; 
   align-items: center;
   justify-content: center;
@@ -131,7 +131,7 @@ description {
 
 textarea {
 
-  flex-grow: 1; 
+  /* flex-grow: 1;  */
   /* outline: red solid 1px; */
   display: block;
 
@@ -158,7 +158,7 @@ textarea {
 
   border: 1px solid black;
   /* border-radius: 40px; */
-  margin: 00px 0px 8px 0px;
+  margin: 8px 0px 8px 0px;
 
 }
 
@@ -170,7 +170,7 @@ send {
   width: calc(100% - 42px); /* Removes both padding and border */
   padding: 20px 20px 20px 20px;
  
-
+  margin-bottom: 8px;
   border-style: solid;
   border-color: black;
   border-width: 1px;
@@ -182,7 +182,7 @@ send {
   text-align: center;
   color: black;
   background-color: white;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
     
 }
 
@@ -202,17 +202,46 @@ error {
   color: white;
   padding: 5px;
   display: block;
-  /* height: 60px; */
+  height: 100px;
   font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
   font-family: 'Lexend Exa', sans-serif;
   line-height: 1.6;
   text-align: center;
   /* font-weight: bold; */
+  margin-bottom: 50px;
 
 }
 
 
+diary {
 
+  display: block;
+  /* background-color: #004D40; */
+  width: calc(100% - 42px); /* Removes both padding and border */
+  padding: 20px 20px 20px 20px;
+ 
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 40px;
+
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+  font-weight: bold;
+  font-family: 'Lexend Exa', sans-serif;
+  text-align: center;
+  color: black;
+  background-color: white;
+
+    
+}
+
+diary:hover {
+
+  background-color: black;
+  color: white;
+
+}
 
 
 
@@ -248,11 +277,13 @@ error {
     /* justify-content: space-between; */
     
   }
-  
+
   
   talk {
     /* outline: red solid 1px; */
     /* flex-direction: column; */
+    text-decoration: underline;
+    font-weight: bold;
     
     flex: 1 1 0;
     width: 0;
@@ -310,15 +341,14 @@ error {
     /* margin: 0px 0px 0px 0px; */
     /* background-color: #B2DFDB; */
     /* background-color: #00695C; */
-    text-decoration: underline;
-  
+    
     padding: 4px 0px 4px 0px;
   
     /* border: 4px solid white; */
     border-radius: 40px;
   
     font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-    font-weight: bold;
+  
    
     text-align: center;
     color: black;

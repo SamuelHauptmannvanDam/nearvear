@@ -47,7 +47,7 @@ growthBox.appendChild(centeringVerticallyBox);
 
 //HOME ICON
 const img = document.createElement('img'); 
-img.src = '32px.svg'; 
+img.src = '192px.svg'; 
 img.onclick = function(){home()};
 topBox.appendChild(img);
 

@@ -5,6 +5,7 @@ html{
 html, body{
   margin: 0px 4px 0px 4px;
   /* color: white; */
+  font-family: 'Lexend Exa', sans-serif;
 }
 
 body{
@@ -43,14 +44,11 @@ topBox{
 }
 
 img{
-
   /* height: calc(20px + (30 - 20) * ((100vw - 300px) / (1800 - 300))); */
   cursor: pointer;
-
 }
 
 titleBox{
-
   /* outline: red solid 1px; */
   width: 100%;
   font-size: calc(14px + (30 - 14) * ((100vw - 300px) / (1800 - 300)));
@@ -60,18 +58,17 @@ titleBox{
   font-family: 'Lexend Exa', sans-serif;
   /* text-align: center; */
   cursor: pointer;
- 
-
 }
 
 conversationBox{
   
   /* outline: red solid 1px; */
-  overflow: scroll;
+  /* overflow: scroll; */
   display: flex;
   flex-direction: column;
   width: 100%;
   flex-grow: 1;
+  padding-bottom: 50vh;
 
 }
 
@@ -80,7 +77,7 @@ conversationItem {
   display: block;
   width: 100% - 20px;
   margin: 0px 0px 4px 0px;
-  padding: 20px;
+  /* padding: 20px 20px 10px 20px; */
   background-color: white;
 
   border: 1px solid white;
@@ -92,10 +89,38 @@ conversationItem {
 
 }
 
+
+
+conversationText{
+  display: block;
+  padding: 20px 20px 00px 20px;
+}
+
+conversationInfoBox{
+  padding: 00px 20px 20px 20px;
+  display: block;
+  font-size: calc(6px + (10 - 6) * ((100vw - 300px) / (1800 - 300)));
+}
+
+conversationCheck{
+  /* display: block; */
+  text-align: right;
+  padding: 00px 5px 5px 5px;
+}
+
+
 inputBox{
 
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white ;
+  /* outline: red solid 1px; */
   display: flex;
   flex-direction: column;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 
 }
 
@@ -107,14 +132,13 @@ textarea {
   resize: vertical;
   width: calc(100% - 42px); /* Removes both padding and border */
   padding: 20px;
+  height: 15vh;
   min-height: 20px;
   max-height: 70vh;
   background-color: white;
-
   font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
   font-family: 'Lexend Exa', sans-serif;
   line-height: 1.6;
-
   outline: none;
   border: 1px solid black;
 
@@ -127,19 +151,18 @@ buttonBox {
 }
 
 send {
-
+  
+  /* outline: red solid 1px; */
   /* display: block; */
   background-color: white;
   padding: 4px 0px 4px 0px;
   margin: 4px 00px 4px 00px;
   width: 100%;
-
   /* font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300))); */
   font-family: 'Lexend Exa', sans-serif;
   /* color: white; */
   /* font-weight: bold; */
   text-align: center;
-
   border-style: solid;
   border-color: black;
   border-width: 1px;
@@ -188,44 +211,70 @@ trustworthy:hover {
 }
 
 trustworthyIcon{
-    
   /* outline: red solid 1px; */
   display: block;
 
 }
 
 trustworthyText{
-    
   /* outline: red solid 1px; */
     display: block;
-
 }
 
 
-/* ---------------------------------------------------------------BOTTOM BOX */
+/* --------------------------------------------------------------- BOTTOM BOX */
 bottomBox{
-  padding: 0px 0px 4px 0px;
+display: block;
+
+  /* width: 100%; */
+  /* outline: red solid 1px; */
+  /* border-top: 1px solid black;  */
+  /* border-left: 1px solid white;
+  border-right: 1px solid white; */
+  background-color: white;
+  /* #004D40 */
+  padding: 4px 0px 4px 0px;
   display: flex;
-}
+  /* justify-content: space-between; */
   
+}
+
 
 talk {
   /* outline: red solid 1px; */
+  /* flex-direction: column; */
+  
   flex: 1 1 0;
   width: 0;
+  /* background-color: #B2DFDB; */
+  /* background-color: #00695C; */
+
   padding: 4px 0px 4px 0px;
 
   /* border: 4px solid white; */
   border-radius: 40px;
 
   font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-  font-family: 'Lexend Exa', sans-serif;
+  /* font-weight: bold; */
+
   text-align: center;
   color: black;
   overflow: hidden;
 
   cursor: pointer;
 
+}
+
+confessIcon{
+  /* outline: red solid 1px; */
+    display: block;
+}
+
+
+
+confessButtonText{
+  /* outline: red solid 1px; */
+    display: block;
 }
 
 talk:hover {
@@ -237,48 +286,26 @@ talk:hover {
 
 }
 
-confessIcon{
-  
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-
-
-confessButtonText{
-  
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
 
 listen {
 
-  /* outline: red solid 1px; */
   flex: 1 0 0;
+
+  text-decoration: underline;
+
   padding: 4px 0px 4px 0px;
 
   /* border: 4px solid white; */
   border-radius: 40px;
 
   font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-  /* font-weight: bold; */
-  font-family: 'Lexend Exa', sans-serif;
+  font-weight: bold;
+  
   text-align: center;
   color: black;
   overflow: hidden;
 
   cursor: pointer;
-
-}
-  
-listen:hover {
-
-  background-color: black;
-  color: white;
-  border-color: white;
 
 }
 
@@ -297,25 +324,50 @@ listenButtonText{
 
 }
 
+listen:hover {
+
+  background-color: black;
+  color: white;
+  border-color: white;
+
+}
+
 
 yourConversations {
   
   flex: 1 1 0;
   width: 0;
+  /* margin: 0px 2px 0px 0px; */
+  /* background-color: #B2DFDB; */
+  
   padding: 4px 0px 4px 0px;
 
   /* border: 4px solid white; */
   border-radius: 40px;
-  text-decoration: underline;
+
   font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
-  font-weight: bold;
-  font-family: 'Lexend Exa', sans-serif;
+  /* font-weight: bold; */
+
   text-align: center;
   color: black;
   /* word-wrap: break-word; */
   overflow: hidden;
 
   cursor: pointer;
+
+}
+
+conversationsIcon{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+conversationsButtonText{
+  
+  /* outline: red solid 1px; */
+    display: block;
 
 }
 
@@ -327,20 +379,6 @@ yourConversations:hover {
   
 }
 
-youIcon{
-  
-  /* outline: red solid 1px; */
-    display: block;
-
-}
-
-
-youButtonText{
-  
-  /* outline: red solid 1px; */
-    display: block;
-
-}
 
 you {
   
@@ -352,12 +390,26 @@ you {
 
   font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
   /* font-weight: bold; */
-  font-family: 'Lexend Exa', sans-serif;
+
   text-align: center;
   color: black;
   overflow: hidden;
 
   cursor: pointer;
+
+}
+
+youIcon{
+  
+  /* outline: red solid 1px; */
+    display: block;
+
+}
+
+youButtonText{
+  
+  /* outline: red solid 1px; */
+    display: block;
 
 }
 
@@ -368,8 +420,6 @@ you:hover {
   border-color: white;
 
 }
-
-
 
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -383,15 +433,4 @@ textarea {
 scrollbar-width: none;  /* Firefox */
 }
 
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-conversationBox::-webkit-scrollbar {
-display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-conversationBox {
--ms-overflow-style: none;  /* IE and Edge */
-scrollbar-width: none;  /* Firefox */
-}
 

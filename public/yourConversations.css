@@ -96,34 +96,49 @@ conversationListBox {
 
 conversationItem {
 
-  /* transition: 0.3s; */
   display: block;
+  flex-direction: column;
   /* outline: red solid 1px; */
-  margin: 8px 0px 32px 0px;
-  /* width: 100% - 40px; */
-  background-color: white;
-  color: black;
   
+  margin: 8px 0px 32px 0px;
   padding: 30px 40px 10px 40px;
-
   border: 1px solid black;
   border-radius: 10px;
-
-  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
-  font-family: 'Lexend Exa', sans-serif;
-  line-height: 1.6;
-  overflow-wrap: break-word;
-
+  color: black;
+  background-color: white;
   cursor: pointer;
 
 }
 
 conversationItem:hover {
-
+  
   background-color: black;
   color: white;
   border-color: black;
   
+
+}
+
+onminditemtext{
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+  line-height: 1.6;
+  display: block;
+  /* overflow: hidden; */
+  overflow-wrap: break-word;
+  /* outline: red solid 1px; */
+  margin-bottom: 10px;
+}
+
+onMindItemDate{
+  display: block;
+  text-align: right;
+  font-size: calc(6px + (10 - 6) * ((100vw - 300px) / (1800 - 300)));
+}
+
+converseIcon{
+  
+  /* outline: red solid 1px; */
+    display: block;
 
 }
 
@@ -149,7 +164,7 @@ onMindItemMenuBar{
   font-size: calc(8px + (14 - 8) * ((100vw - 280px) / (1920 - 280)));
   border-top: 1px solid black;
   /* border-radius: 10px; */
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding-top: 10px;
   /* justify-content: center; */
   display: flex;
@@ -163,12 +178,13 @@ converseButton{
   /* outline: red solid 1px; */
   display: flex;
   flex-direction: column;
-
+  height: 100px;
   padding: 10px;
   text-align: center;
   border-radius: 200px;
   flex-grow: 1; 
-  
+  height: 48px;
+  padding-bottom: 30px;
 }
 
 converseButton:hover{
@@ -177,8 +193,6 @@ converseButton:hover{
   color: white; 
   border-color: white;
 }
-
-
 
 
 
@@ -262,12 +276,7 @@ talk {
 
 }
 
-confessIcon{
-  
-  /* outline: red solid 1px; */
-    display: block;
 
-}
 
 
 

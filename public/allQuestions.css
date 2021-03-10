@@ -10,6 +10,8 @@ html, body{
 
 body{
   overflow-y: scroll;
+
+  
 }
 
 
@@ -19,6 +21,7 @@ flexBox{
   height: 96vh;
   height: calc(var(--vh, 1vh) * 100);  
   justify-content: center;
+ 
 }
 
 centeringBox{
@@ -27,17 +30,11 @@ centeringBox{
   /* outline: red solid 1px; */
   width: 100%;
   flex-direction: column;
-  /* min-width: 280px; */
-  /* padding: 00px 10px 00px 10px; */
-
 }
 
 topBox{
 
   padding-top: 4px;
-  /* outline: blue solid 1px; */
-  /* width: 100%; */
-  /* flex-direction: column; */
   border-bottom: 1px solid black; 
 
 }
@@ -78,9 +75,8 @@ collectiveLove{
 
 descriptionBox{
   /* outline: black solid 1px; */
-  display: block;
-  padding: 10px 20px 20px 20px;
-  /* display: flex; */
+  display: flex;
+  padding-top: 10px;
 }
 
 
@@ -97,68 +93,59 @@ description {
 
   /* display: flex; */
   /* outline: black solid 1px; */
-  padding: 00px 00px 10px 00px;
+  /* padding: 00px 00px 10px 00px; */
   display: block;
 
   font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+  /* font-size: 10px; */
 
   line-height: 1.6;
 
 }
 
 
-
-
-
-selectLanguage{
-  user-select: none; 
-  display: block;
-  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-
-  padding: 20px;
-  margin: 10px 00px 20px 00px;
-  
-  border: 1px black solid;
-  border-radius: 100px;
-  cursor: pointer;
-  
-  /* outline: 1px red solid; */
-}
-
-selectLanguage:hover{
-  color: white;
-  background-color: black;
-}
-
-languageBox{
-  display: none;
-  /* visibility: hidden; */
-}
-
 updateBox{
-  display: block;
-  padding: 0px 20px 20px 20px;
+  /* background-color: #e6ffe6; */
+
+  display: flex;
+  /* padding: 0px 20px 20px 20px; */
   line-height: 1.6;
   /* border-bottom: 1px black solid; */
     /* outline: 1px red solid; */
-
+   
 }
+
 
 updateDeletionButton{
+
   display: block;
   /* outline: black solid 1px; */
-  text-align: right;
-  font-size: 40px;
+  /* text-align: right; */
+  font-size: 30px;
   cursor: pointer;
+  /* padding-right: 10px; */
 
 }
+
 
 updateDescription{
   display: block;
-  max-height: 300px;
-  overflow-y: scroll;
+  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+  flex-grow: 1;
+  /* padding: 10px; */
+  
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+updateDescription::-webkit-scrollbar {
+  display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+updateDescription {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
 
 
 midBox {
@@ -207,12 +194,15 @@ onMindItemText{
   /* overflow: hidden; */
   overflow-wrap: break-word;
   /* outline: red solid 1px; */
-
+  margin-bottom: 10px;
 }
 
 
-
-
+onMindItemDate{
+  display: block;
+  text-align: right;
+  font-size: calc(6px + (10 - 6) * ((100vw - 300px) / (1800 - 300)));
+}
 
 
 onMindItemMenuBar{
@@ -221,7 +211,7 @@ onMindItemMenuBar{
   font-size: calc(8px + (14 - 8) * ((100vw - 280px) / (1920 - 280)));
   border-top: 1px solid black;
   /* border-radius: 10px; */
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding-top: 10px;
   /* justify-content: center; */
   display: flex;
@@ -229,19 +219,17 @@ onMindItemMenuBar{
 }
 
 loveButton{
-  width: 33%;
+  
+  /* outline: red solid 1px; */
+  /* width: 33%; */
   display: flex;
   flex-direction: column;
-
-
-  /* outline: red solid 1px; */
   padding: 10px;
-  /* width: 100px; */
-  text-align: center;
-  /* display: block; */
   border-radius: 200px;
   flex-grow: 1; 
-  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  
   
 }
 
@@ -253,18 +241,23 @@ loveButton:hover{
   cursor: pointer;
 }
 
+deleteButton{
+  cursor: pointer;
+}
 
 
 converseButton{
-  width: 33%;
+  
   /* outline: red solid 1px; */
+  /* width: 33%; */
   display: flex;
   flex-direction: column;
-
   padding: 10px;
-  text-align: center;
   border-radius: 200px;
   flex-grow: 1; 
+  text-align: center;
+  align-items: center;
+  
   
 }
 
@@ -281,7 +274,28 @@ converseButton:hover{
 shareButton{
   
   /* outline: red solid 1px; */
-  width: 33%;
+  /* width: 33%; */
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 200px;
+  flex-grow: 1; 
+  text-align: center;
+  align-items: center;
+
+}
+
+shareButton:hover{
+  background-color: black;
+  color: white; 
+  border-color: white;
+}
+
+
+forgiveButton{
+  
+  /* outline: red solid 1px; */
+  /* width: 33%; */
   display: flex;
   flex-direction: column;
 
@@ -296,11 +310,12 @@ shareButton{
   align-items: center;
 }
 
-shareButton:hover{
+forgiveButton:hover{
   background-color: black;
   color: white; 
   border-color: white;
 }
+
 
 
 moreButton {
@@ -330,29 +345,6 @@ moreButton:hover {
   color: white;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -393,14 +385,6 @@ textarea {
   /* cursor: pointer; */
 }
 
-
-/* textarea:hover {
-
-  background-color: #004D40;
-  color: white;
-  border-color: white;
-
-} */
 
 
 editButton{
@@ -503,13 +487,8 @@ talk:hover {
 
 listen {
 
-  /* outline: red solid 1px; */
-  /* flex-grow: 1; */
   flex: 1 0 0;
-  /* width: 0; */
-  /* margin: 0px 0px 0px 0px; */
-  /* background-color: #B2DFDB; */
-  /* background-color: #00695C; */
+
   text-decoration: underline;
 
   padding: 4px 0px 4px 0px;
@@ -641,44 +620,3 @@ you:hover {
 }
 
 
-
-
-
-
-
-
-/* ALL THE LANGUAGE BUTTONS */
-
-.languageButton{
-  user-select: none; 
-  display: block;
-  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-
-  padding: 20px;
-  margin: 10px 00px 00px 00px;
-  
-  border: 1px black solid;
-  border-radius: 100px;
-  cursor: pointer;
-}
-
-.languageButton:hover {
-  color: white;
-  background-color: black;
-}
-/* 
-selectPortuguese{
-  display: block;
-  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
-
-  padding: 20px;
-  margin: 10px 00px 00px 00px;
-  
-  border: 1px black solid;
-  border-radius: 100px;
-  cursor: pointer;
-}
-
-selectDanish{
-  display: block;
-} */

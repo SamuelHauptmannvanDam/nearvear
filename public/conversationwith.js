@@ -1,24 +1,36 @@
 // Checks if user is signed in
 firebase.auth().onAuthStateChanged(function(user) {
-
     if (user) {
         let uid = user.uid;
-
     }  else {
-
         firebase.auth().signInAnonymously().catch(function(error) {
-            // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ...
         });
-
       }
 });
 
-let creatorID = localStorage.getItem("creatorID");
-let answeringID = localStorage.getItem("answeringID");
-let conversationID = localStorage.getItem("conversationID");
+let creatorID
+// The person getting the link, is always the creator.
+firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+        let uid = user.uid;
+        creatorID = uid
+        
+    }  
+});
+
+// The Trustee is always the answering.
+// GET DATA FROM LINK
+var vars = [], hash;
+var hashes = window.location.href.slice(window.location.href.indexOf('?')).split('?');
+let answeringID = hashes[1];
+
+
+
+
+
 
 let trustGiven = "not"
 
@@ -49,13 +61,33 @@ function home(){
     window.location='index.html';
 }
 
+
+// GET CONVERSATION COUNT
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        let uid = user.uid;
+        
+        var ref = database.ref().child("yourConversations").child(answeringID)
+        ref.once("value")
+        .then(function(snapshot) {
+            
+            let conversationCount = snapshot.numChildren(); // 1 ("name")
+            const description = document.createElement('description');
+            description.innerHTML = conversationCount + " people has already talked with this mentor"
+            topBox.appendChild(description);
+
+        });
+
+    }  
+});
+
+
+
 const conversationBox = document.createElement('conversationBox');
-conversationBox.id = "conversationBoxID"
-centeringBox.appendChild(topBox);
+conversationBox.appendChild(topBox);
 centeringBox.appendChild(conversationBox);
 
 const inputBox = document.createElement('inputBox');
-inputBox.id = "inputBoxID"
 centeringBox.appendChild(inputBox);
 
 const textarea = document.createElement('textarea');
@@ -101,6 +133,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
        
         let uid = user.uid;
+        creatorID = uid
         if(uid == creatorID){
        
             checkTrustworthiness()
@@ -134,7 +167,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 function updateTrustworthiness(){
-   
+
      // READ IF TRUST HAS BEEN GIVEN OR NOT
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -267,24 +300,27 @@ function subtractOneFromTrustworthiness() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
+           
             database.ref().child("Trust").child(answeringID).child("trustworthiness").once('value').then(function(snapshot) {
+
                 database.ref().child("Trust").child(answeringID).update({
                     trustworthiness: snapshot.val()-1,
                 });
+
                 checkTrustworthiness()
+
             });
         }
     });
 }
 
 
-// ----------------------------------------- BOTTOM BOX 
+// -----------------------------------------BOTTOM BOX 
+
 const bottomBox = document.createElement('bottomBox');
-bottomBox.id = "bottomBoxID";
 inputBox.appendChild(bottomBox);
 
-
-// ----------------------------------------- BOTTOM BOX BUTTONS
+// -----------------------------------------BOTTOM BOX BUTTONS
 
 const talk = document.createElement('talk');
 // talk.innerText = "Confess";
@@ -345,8 +381,9 @@ function allQuestionsLink() {
     window.location='allQuestions.html';
 }
 
-// ------------------------------------------ YOUR CONVERSATIONS
+
 const yourConversations = document.createElement('yourConversations');
+// yourConversations.innerText = "Conversations";
 yourConversations.onclick = function(){YourConversationsLink()};
 yourConversations.onmouseover = function(){changeConversationsToWhite()};
 yourConversations.onmouseout = function(){changeConversationsToBlack()};
@@ -373,7 +410,6 @@ function YourConversationsLink() {
     window.location='yourConversations.html';
 }
 
-// ------------------------------------------ SETTINGS
 const you = document.createElement('you');
 // you.innerText = "You";
 you.onclick = function(){settingsLink()};
@@ -402,12 +438,6 @@ function settingsLink(){
     window.location='settings.html';
 }
 
-var inputBoxIDHeight = document.getElementById("inputBoxID");
-
-// conversationBox.style.paddingBottom = inputBoxIDHeight.offsetHeight +"px";
-
-// ------------------------------------------ BOTTOM BOX DONE
-
 
 //Connect to database
 let database = firebase.database();
@@ -426,7 +456,6 @@ let localNumber = 999999999999999;
 database.ref('Timestamp/').set({timestamp: firebase.database.ServerValue.TIMESTAMP});
 database.ref('Timestamp/').once('value', function(snapshot){ firebaseTimestamp = snapshot.val() })
 
-let count = 0
 
 // ------------------------------------------ GETS THE CONVERSATION
 firebase.auth().onAuthStateChanged(function(user) {
@@ -436,8 +465,9 @@ firebase.auth().onAuthStateChanged(function(user) {
         rootRef.on("child_added", snap => {
             let message = snap.child("message").val(); //The message
             let messageCreatorID = snap.child("creatorID").val(); // poster of message ID, to give color to your posts.
-
+         
             let timestamp = snap.child("timestamp").val();      
+
             const conversationItem = document.createElement('conversationItem');
             conversationBox.appendChild(conversationItem);
           
@@ -453,32 +483,21 @@ firebase.auth().onAuthStateChanged(function(user) {
             conversationText.innerText = message;
             conversationItem.appendChild(conversationText);
 
-            const dateObject = new Date(timestamp)
-            const humanDateFormat = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'short' }).format(dateObject)
-    
-
-            const conversationInfoBox = document.createElement('conversationInfoBox');
-            conversationItem.appendChild(conversationInfoBox);
-
-
-
-
-            const onMindItemDate = document.createElement('onMindItemDate');
-            onMindItemDate.innerText = humanDateFormat;
-            conversationInfoBox.appendChild(onMindItemDate);
-
             // Checks if you've seen it.
             let seenByYou = snap.child(uid).child("seen").val(); 
+            console.log(seenByYou)
             if(seenByYou != "seen"){
                 database.ref().child("Conversations").child(creatorID).child(answeringID).child(snap.key).child(uid).update({seen: "seen"});   
+                // console.log(snap.key)
             }
+            
 
             if(uid == creatorID){   
                 let seenByAnsweringID = snap.child(answeringID).child("seen").val(); 
                 if(seenByAnsweringID == "seen"){
                     const conversationCheck = document.createElement('conversationCheck');
                     conversationCheck.innerText = "✓";
-                    conversationInfoBox.appendChild(conversationCheck);
+                    conversationItem.appendChild(conversationCheck);
                 }
             }
             if(uid == answeringID){     
@@ -486,11 +505,11 @@ firebase.auth().onAuthStateChanged(function(user) {
                 if(seenByCreatorID == "seen"){
                     const conversationCheck = document.createElement('conversationCheck');
                     conversationCheck.innerText = "✓";
-                    conversationInfoBox.appendChild(conversationCheck);
+                    conversationItem.appendChild(conversationCheck);
                 }
             }
-       
-            window.scrollTo(0, 500000);
+
+            conversationBox.scrollTo(0, 5000000);
         });
     }
 });
@@ -498,12 +517,18 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function sendMessage() {
     ifEmailAvailable()
+   
     if(document.getElementById("TextAreaID").value == "" ){
+
     } else{
+
         let timestampReverse = localNumber - Object.values(firebaseTimestamp);
+
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
+
                 let uid = user.uid;
+ 
                 // ------------------------------------------ Adds message to conversation.
                 database.ref('Conversations').child(creatorID).child(answeringID).push().set({
                     message: document.getElementById("TextAreaID").value,
@@ -511,10 +536,13 @@ function sendMessage() {
                     timestampReverse: timestampReverse,
                     onMindID: pushID,
                     creatorID: uid,
+                    
                 }); 
                
                 // ------------------------------------------ Conversation Title, for the conversation list.
                 // ------------------------------------------ Conversation list not yet implemented.
+
+
                 // ------------------------------------------ ADD CONVERSATIONS TO CONVERSATION LIST
 
                 if(answeringID == uid){
@@ -523,7 +551,6 @@ function sendMessage() {
                     message: document.getElementById("TextAreaID").value,
                     timestamp: firebase.database.ServerValue.TIMESTAMP,
                     timestampReverse: timestampReverse,
-                    // conversationID, conversationID,
                     messageID: messageID,
                     answeringID: uid,
                     creatorID: creatorID,
@@ -534,7 +561,6 @@ function sendMessage() {
                     message: document.getElementById("TextAreaID").value,
                     timestamp: firebase.database.ServerValue.TIMESTAMP,
                     timestampReverse: timestampReverse,
-                    // conversationID, conversationID,
                     messageID: messageID,
                     answeringID: uid,
                     creatorID: creatorID,
@@ -553,7 +579,7 @@ function sendMessage() {
                     message: document.getElementById("TextAreaID").value,
                     timestamp: firebase.database.ServerValue.TIMESTAMP,
                     timestampReverse: timestampReverse,
-                    // conversationID, conversationID,
+                   
                     messageID: messageID,
                     answeringID: answeringID,
                     creatorID: creatorID,
@@ -565,7 +591,7 @@ function sendMessage() {
                     message: document.getElementById("TextAreaID").value,
                     timestamp: firebase.database.ServerValue.TIMESTAMP,
                     timestampReverse: timestampReverse,
-                    // conversationID, conversationID,
+                   
                     messageID: messageID,
                     answeringID: answeringID,
                     creatorID: creatorID,
@@ -588,12 +614,16 @@ function sendMessage() {
 
 
 function ifEmailAvailable(){
+
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let uid = user.uid;
+
             // CHECKS IF YOU ARE CREATOR OR ANSWER AND SEND THE PERSON ISN*T YOU A MAIL THAT YOU*VE ANSWERED THEM
             if(uid != creatorID ){
+
                 //----------------------------------------------- YOU ARE THE ANSWERING
+
                 //CHECK IF SETTING IS ON OR OFF
                 database.ref('Emails').child(answeringID).child("settings").child("newMessage").child("newMessage").once('value').then(function(snapshot) {
                     if(snapshot.val() == "on" || null){
@@ -601,7 +631,6 @@ function ifEmailAvailable(){
                         //CHECK IF MAIL EXIST
                         database.ref('Emails').child(creatorID).child("email").child("email").once('value').then(function(snapshot) {
                             Email.send({
-                                // SecureToken : "6ae98178-8e99-402e-88d3-ece294964342",
                                 SecureToken : "09c52732-99c5-44e6-816a-e3bc58d79108",
                                 To : snapshot.val(),
                                 From : "nearvear.app@gmail.com",
@@ -614,24 +643,26 @@ function ifEmailAvailable(){
                         });
                     }
                 });
+                
             } else {
                 //----------------------------------------------- YOU ARE THE CREATOR
                 //CHECK IF SETTING IS ON OR OFF
                 database.ref('Emails').child(creatorID).child("settings").child("newMessage").child("newMessage").once('value').then(function(snapshot) {
+                    
                     if(snapshot.val() == "on"){
+                        
                         //CHECK IF MAIL EXIST
                         database.ref('Emails').child(answeringID).child("email").child("email").once('value').then(function(snapshot) {
+                                
                             Email.send({
-                                // SecureToken : "6ae98178-8e99-402e-88d3-ece294964342",
+                              
                                 SecureToken : "09c52732-99c5-44e6-816a-e3bc58d79108",
                                 To : snapshot.val(),
                                 From : "nearvear.app@gmail.com",
                                 Subject : "Someone wrote you a message",
                                 Body : "Here, take a look: nearvear.com/yourConversations.html<br><br>If you ever need to unsubscribe: nearvear.com/notifications.html<br>Best regards, the Nearvear Team<br><br>Fun fact: Nearvear is misspelling of nærvær, which means to be present<br>If you ever have feedback or thoughts, just reply to this email and we'll get right back to you"
                             
-                            }).then(
-                                // message => alert(message)
-                            );
+                            })
                         });
                     }
                 });
@@ -639,8 +670,6 @@ function ifEmailAvailable(){
         }
     });
 }
-
-
 
 
 // If screen is taller than wide - aka phones: Use the full screen. But if wider than narrow, use the mid.
@@ -652,12 +681,9 @@ function checkScreenAspect(){
     let aspectFactor = w/h;
     if(aspectFactor>1){
         document.getElementById("CenteringBoxID").style.width = "33%";
-        
-        document.getElementById("inputBoxID").style.width = "calc(33% - 4px)";
 
     } else { // remove topbox for phones
         topBox.style.display = "none";
-        document.getElementById("inputBoxID").style.width = "calc(100% - 16px)";
     }
 }
 
@@ -671,3 +697,4 @@ window.addEventListener('resize', () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
+

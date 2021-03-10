@@ -30,7 +30,15 @@
 			".read": "auth != null",
 			".write": "auth != null"
 		},
+      "Diary": {
+			".read": "auth != null",
+			".write": "auth != null"
+		},
 		"Emails": {
+			".read": "auth != null",
+			".write": "auth != null"
+		},
+    "Forgive": {
 			".read": "auth != null",
 			".write": "auth != null"
 		},

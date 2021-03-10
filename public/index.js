@@ -75,13 +75,11 @@ function changeBackgroundBackTalk() {
  
 }
 
-// function changeBackgroundListen() {
-//     listenButton.style.backgroundColor = "black";
-    
-// }
+function changeBackgroundListen() {
+    listenButton.style.backgroundColor = "black";
+}
 
-// function changeBackgroundBackListen() {
-//     listenButton.style.backgroundColor = "#FF7F50";
-
-// }
+function changeBackgroundBackListen() {
+    listenButton.style.backgroundColor = "white";
+}
 

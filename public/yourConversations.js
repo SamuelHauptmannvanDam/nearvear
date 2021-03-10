@@ -33,7 +33,7 @@ const topBox = document.createElement('topBox');
 centeringBox.appendChild(topBox);
 
 const imgLogo = document.createElement('img'); 
-imgLogo.src = '32px.svg'; 
+imgLogo.src = '192px.svg'; 
 imgLogo.style.height = "calc(20px + (30 - 20) * ((100vw - 300px) / (1800 - 300)))";
 imgLogo.onclick = function(){home()};
 topBox.appendChild(imgLogo); 
@@ -49,9 +49,6 @@ function home(){
 }
 
 
-
-
-
 const descriptionBox = document.createElement('descriptionBox');
 // checkDescription adds the description box if settings has been set to "off"
 checkDescription()
@@ -62,12 +59,9 @@ descriptionDeletionButton.onclick = function(){removeDescription()};
 descriptionBox.appendChild(descriptionDeletionButton);
 
 
-
 const pageDescription = document.createElement('pageDescription');
-pageDescription.innerHTML = "As soon as you or someone else has answered a confession, you'll see the conversations here.<br><br>You'll only be able to see conversations and answers to your posts, given from this specific browser on this specific device<br><br>UNLESS: You upgrade your account and login on another device. Upgrading can be found under Settings<br><br>Add your email under settings, to get notified, whenever someone answers";
+pageDescription.innerHTML = "As soon as you have answered a confession or someone else has answered your confession, you'll see the conversations here<br><br>You can only have two conversations with each person <br>One where you are the one confessing and one where they are the one confessing<br><br>If you've already talked to them about their confession, the new confession is added to your conversation. Or if you are the one confessing, giving another confession, the new confession is added to the conversation as soon as they tab Converse<br><br>You'll only be able to see conversations and answers to your posts, given from this specific browser on this specific device</br>UNLESS: You upgrade your account and login on another device <br>Upgrading can be found under Settings<br><br>Add your email under settings, to get notified, whenever someone answers";
 descriptionBox.appendChild(pageDescription);
-
-
 
 
 function removeDescription() {
@@ -111,32 +105,6 @@ function checkDescription(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const conversationListBox = document.createElement('conversationListBox');
 
 centeringBox.appendChild(conversationListBox);
@@ -159,6 +127,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             let conversationID = snap.child("conversationID").val(); // conversationID
             let creatorID = snap.child("creatorID").val(); // Original Poster
             let answeringID = snap.child("answeringID").val();
+            let timestamp = snap.child("timestamp").val();
             let seen = snap.child("seen").val(); // Information can be seen or unseen and changes look depending on it.
 
             const conversationItem = document.createElement('conversationItem');
@@ -172,6 +141,13 @@ firebase.auth().onAuthStateChanged(function(user) {
             let onMindItemTextID = onMindItemText.id;
             onMindItemText.innerText = message;
             conversationItem.appendChild(onMindItemText);
+
+            const dateObject = new Date(timestamp)
+            const humanDateFormat = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'short' }).format(dateObject)
+
+            const onMindItemDate = document.createElement('onMindItemDate');
+            onMindItemDate.innerText = humanDateFormat;
+            conversationItem.appendChild(onMindItemDate);
 
             // MENU BAR
             const onMindItemMenuBar = document.createElement('onMindItemMenuBar');

@@ -1,0 +1,327 @@
+html{
+  font-size: 16px;
+}
+
+html, body{
+  margin: 0px 4px 0px 4px;
+  font-family: 'Lexend Exa', sans-serif;
+}
+
+
+body{
+  overflow-y: scroll;
+}
+
+
+flexBox{
+  display: flex;
+  /* outline: red solid 1px; */
+  height: 96vh;
+  height: calc(var(--vh, 1vh) * 100);  
+  justify-content: center;
+}
+
+centeringBox{
+
+  display: flex;
+  /* outline: red solid 1px; */
+  width: 100%;
+  flex-direction: column;
+  /* min-width: 280px; */
+  /* padding: 00px 10px 00px 10px; */
+
+}
+
+topBox{
+
+  padding-top: 4px;
+  padding-bottom: 4px;
+  /* outline: blue solid 1px; */
+  /* width: 100%; */
+  flex-direction: column;
+  border-bottom: 1px solid black; 
+  display: flex;
+
+}
+
+titleBox{
+  flex-grow: 1;
+  display: block;
+}
+
+
+
+img{
+  /* outline: blue solid 1px; */
+  /* height: calc(20px + (30 - 20) * ((100vw - 300px) / (1800 - 300))); */
+  cursor: pointer;
+}
+
+
+voteTitle {
+
+  /* display: block; */
+  /* outline: red solid 1px; */
+  width: 100%;
+  font-size: calc(14px + (30 - 14) * ((100vw - 300px) / (1800 - 300)));
+  font-weight: bold;
+
+  /* text-align: center; */
+
+cursor: pointer;
+
+}
+
+descriptionBox{
+  display: block;
+  /* padding: 10px 20px 20px 20px; */
+}
+
+
+descriptionDeletionButton{
+  display: block;
+  /* outline: black solid 1px; */
+  text-align: right;
+  font-size: 40px;
+  cursor: pointer;
+
+}
+
+description {
+
+  padding: 00px 10px 00px 10px;
+  display: block;
+
+  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+
+  line-height: 1.6;
+
+}
+
+
+midBox {
+    
+  /* outline: red solid 1px; */
+  padding-bottom: 1000px;
+  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+
+}
+
+sortingBox{
+  display: flex;
+  align-items: center;
+}
+
+
+suggestionItem {
+
+  display: block;
+  /* display: hidden; */
+  flex-direction: column;
+  /* outline: red solid 1px; */
+  padding: 20px 30px 10px 30px;
+  /* margin: 8px 0px 8px 0px; */
+  border-bottom: 1px solid black;
+  line-height: 1.6;
+  color: black;
+  background-color: white;
+}
+
+
+suggestionItem:hover {
+  filter: invert(1);
+  font-weight: bold;
+}
+
+
+
+suggestionText{
+
+  /* padding: 20px 20px 00px 20px; */
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+  display: block;
+  /* overflow: hidden; */
+  overflow-wrap: break-word;
+  /* outline: red solid 1px; */
+  
+
+}
+
+dateText{
+  padding: 10px 10px 00px 10px;
+  font-size: calc(6px + (10 - 6) * ((100vw - 300px) / (1800 - 300)));
+  text-align: right;
+  display: block;
+}
+
+onMindItemMenuBar{
+  
+  /* outline: red solid 1px; */
+  /* border-top: 1px black solid; */
+  font-size: calc(8px + (14 - 8) * ((100vw - 280px) / (1920 - 280)));
+  padding-top: 10px;
+  justify-content: center;
+  display: flex;
+  
+}
+
+loveButtonText{
+  display: block;
+  text-align: center;
+}
+
+
+
+textarea {
+
+  display: block;
+  /* margin: 5px 00px 0px 00px; */
+  resize: vertical;
+  width: calc(100% - 42px); /* Removes both padding and border */
+  padding: 20px;
+  min-height: 20px;
+  max-height: 70vh;
+  background-color: white;
+
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+  font-family: 'Lexend Exa', sans-serif;
+  line-height: 1.6;
+
+  outline: none;
+  border: 1px solid black;
+
+}
+
+
+send {
+  /* outline: red solid 1px; */
+  display: block;
+  background-color: white;
+  padding: 4px 0px 4px 0px;
+  margin: 4px 00px 4px 00px;
+
+  font-size: calc(10px + (14 - 10) * ((100vw - 280px) / (1920 - 280)));
+  font-family: 'Lexend Exa', sans-serif;
+  /* color: white; */
+  /* font-weight: bold; */
+  text-align: center;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 40px;
+
+}
+
+send:hover {
+
+  background-color: black;
+  color: white;
+  border-color: black;
+
+}
+
+sendText{
+  display: block;
+}
+
+
+editButton{
+
+  /* outline: red solid 1px;   */
+  text-align: right;
+  /* padding: 00px 40px 00px 00px; */
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+  
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+saveButton{
+  /* outline: red solid 1px;   */
+  text-align: right;
+  /* padding: 00px 60px 00px 60px; */
+  font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1800 - 300)));
+
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+
+
+
+/* ---------------------------------------------------------------BOTTOM BOX */
+bottomBox{
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  font-size: calc(10px + (14 - 10) * ((100vw - 280px) / (1920 - 280)));
+}
+
+bottomBoxMenu{
+  background-color: white;
+  padding: 0px 0px 4px 0px;
+  display: flex;
+}
+
+.bottomMenuButton{
+  flex: 1 1 0;
+  width: 0;
+  padding: 4px 0px 4px 0px;
+  border-radius: 10px;
+  font-size: calc(6px + (14 - 6) * ((100vw - 280px) / (1920 - 280)));
+  background-color: white;
+  text-align: center;
+  color: black;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.bottomMenuButtonIcon{
+  display: block;
+  margin: auto
+}
+
+.bottomMenuButtonText{
+  display: block;
+}
+
+.bottomMenuButton:hover{
+  filter: invert(1);
+  font-weight: bold;
+}
+
+
+/* ---------------------------------------------------------------BOTTOM BOX CSS ENDS*/
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+textarea {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+conversationBox::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+conversationBox {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

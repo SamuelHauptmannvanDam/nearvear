@@ -45,7 +45,7 @@ centeringBox.appendChild(midBox);
 
 //HOME ICON
 const imgLogo = document.createElement('img'); 
-imgLogo.src = '32px.svg'; 
+imgLogo.src = '192px.svg'; 
 imgLogo.style.height = "calc(20px + (30 - 20) * ((100vw - 300px) / (1800 - 300)))";
 imgLogo.onclick = function(){home()};
 topBox.appendChild(imgLogo);
@@ -63,10 +63,10 @@ function home(){
 
 // ----------------------------------------------------- TRUSTWORTHY SETTINGS
 
-const descriptionTrustworthy = document.createElement('descriptionTrustworthy');
-descriptionTrustworthy.innerText = "Trustworthy";
-descriptionTrustworthy.className = "description"
-midBox.appendChild(descriptionTrustworthy);
+// const descriptionTrustworthy = document.createElement('descriptionTrustworthy');
+// descriptionTrustworthy.innerText = "Trustworthy";
+// descriptionTrustworthy.className = "description"
+// midBox.appendChild(descriptionTrustworthy);
 
 const trustworthyBox = document.createElement('trustworthyBox');
 midBox.appendChild(trustworthyBox);
@@ -105,9 +105,56 @@ function checkYourTrustworthiness(){
 
 
 
+// ---------------------------------------------------------  ADD EMAIL
+
+const descriptionEmail = document.createElement('descriptionEmail');
+descriptionEmail.innerText = "Add your email to get notifications:";
+descriptionEmail.className = "description"
+midBox.appendChild(descriptionEmail);
+
+const textarea = document.createElement('input');
+textarea.maxLength = 3000;
+textarea.id = "emailTextArea";
+textarea.autocomplete = "email";
+textarea.placeholder = "Add Email";
+midBox.appendChild(textarea);
+
+const add = document.createElement('add');
+add.innerText = "Add Email";
+add.onclick = function(){addEmail()};
+midBox.appendChild(add);
+
+const clearEmail = document.createElement('clearEmail');
+clearEmail.innerText = "Remove email";
+clearEmail.onclick = function(){clearEmailFunction()};
+midBox.appendChild(clearEmail);
 
 
+// ---------------------------------------------------------  LOGIN AND UPGRADE
+const descriptionUpgradeAndLogin = document.createElement('descriptionUpgradeAndLogin');
+descriptionUpgradeAndLogin.innerText = "Upgrade to login on other devices:";
+descriptionUpgradeAndLogin.className = "description"
+midBox.appendChild(descriptionUpgradeAndLogin);
 
+const buttonToUpgrade = document.createElement('buttonToUpgrade');
+buttonToUpgrade.innerText = "Upgrade";
+buttonToUpgrade.className = "button"
+buttonToUpgrade.onclick = function(){upgrade()};
+midBox.appendChild(buttonToUpgrade);
+
+function upgrade(){
+    window.location='upgrade.html';
+}
+
+const buttonToLogin = document.createElement('butbuttonToLogintonToUpgrade');
+buttonToLogin.innerText = "Login";
+buttonToLogin.className = "button"
+buttonToLogin.onclick = function(){login()};
+midBox.appendChild(buttonToLogin);
+
+function login(){
+    window.location='login.html';
+}
 
 
 // --------------------------------------------------------- BUTTONS FOR LANGUAGE AND NOTIFICATIONS
@@ -139,84 +186,31 @@ function language(){
     window.location='language.html';
 }
 
-
-const descriptionUpgradeAndLogin = document.createElement('descriptionUpgradeAndLogin');
-descriptionUpgradeAndLogin.innerText = "Upgrade & Login:";
-descriptionUpgradeAndLogin.className = "description"
-midBox.appendChild(descriptionUpgradeAndLogin);
-
-const buttonToUpgrade = document.createElement('buttonToUpgrade');
-buttonToUpgrade.innerText = "Upgrade";
-buttonToUpgrade.className = "button"
-buttonToUpgrade.onclick = function(){upgrade()};
-midBox.appendChild(buttonToUpgrade);
-
-function upgrade(){
-    window.location='upgrade.html';
-}
-
-const buttonToLogin = document.createElement('butbuttonToLogintonToUpgrade');
-buttonToLogin.innerText = "Login/Logout";
-buttonToLogin.className = "button"
-buttonToLogin.onclick = function(){login()};
-midBox.appendChild(buttonToLogin);
-
-function login(){
-    window.location='login.html';
-}
+const descriptionShareProfile = document.createElement('descriptionShareProfile');
+descriptionShareProfile.innerText = "Let people write you directly";
+descriptionShareProfile.className = "description"
+midBox.appendChild(descriptionShareProfile);
 
 
+const buttonToShareProfile = document.createElement('buttonToShareProfile');
+buttonToShareProfile.innerText = "Share Profile";
+buttonToShareProfile.id = "buttonToShareProfileID"
+buttonToShareProfile.className = "button"
+buttonToShareProfile.onclick = function(){shareLink()};
+midBox.appendChild(buttonToShareProfile);
 
+const descriptionUpdate = document.createElement('descriptionUpdate');
+descriptionUpdate.innerText = "Update";
+descriptionUpdate.className = "description"
+midBox.appendChild(descriptionUpdate);
 
+// -------------------------------------------------------  UPDATEBOX
+const updateBox = document.createElement('updateBox');
+midBox.appendChild(updateBox);
 
-
-
-
-
-
-// ---------------------------------------------------------  ADD EMAIL
-
-const descriptionEmail = document.createElement('descriptionEmail');
-descriptionEmail.innerText = "Add your email to get notifications:";
-descriptionEmail.className = "description"
-midBox.appendChild(descriptionEmail);
-
-const textarea = document.createElement('input');
-textarea.maxLength = 3000;
-textarea.id = "emailTextArea";
-textarea.autocomplete = "email";
-textarea.placeholder = "Add Email";
-midBox.appendChild(textarea);
-
-const add = document.createElement('add');
-add.innerText = "Add Email";
-add.onclick = function(){addEmail()};
-midBox.appendChild(add);
-
-const clearEmail = document.createElement('clearEmail');
-clearEmail.innerText = "Remove email";
-clearEmail.onclick = function(){clearEmailFunction()};
-midBox.appendChild(clearEmail);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const updateDescription = document.createElement('updateDescription');
+updateDescription.innerHTML = "Here's what we've done for you since last time<br /><br />10/03/2021<br />+ Fixed size on icons when loading in more confessions<br /><br />06/03/2021<br />+ Added infinite scroll<br /><br />21/02/2021<br />+ Removed the need for Trustworthiness to comment in forum<br />+ Added timestamps under Conversations<br />+ Added timestamps to messages<br /><br />02/02/2021<br />+ Added possiblity to share profile, such that people can talk to you directly. Link can be found under Settings. When shared, people are dropped directly into a conversation with you. <br /><br />31/01/2021<br />+ Added update list to Settings <br />+ Fixed conversations: They came out of order<br />+ Fixed checkmarks not correctly showing if the other person has seen the message :: a checkmark in conversation means the other person has seen the message<br />+Fixed the More button under Confessions while using another languages than English, only showing english posts. It now shows posts from the correct language.<br /><br />24/01/2021<br />+Checkmark on seen messages<br /><br />23/01/2021<br />+Diary: Found under Confess <br /><br />19/01/2021<br />+Time & Date of posts<br />+Number indicator of forum posts<br /><br />17/01/2021<br />+Public forgiving <br /><br />11/01/2021:<br />+ Upgrade Account<br />+ Login: If you upgrade your account, you'll then be able to login and see those conversations on any device you want<br />+ Added deletion of description under Conversations<br />+ Added menu for language<br />+ Added menu for notifications<br />+ Call for Sunday confession Email<br />+ Update Card<br /><br />Got an idea or feedback, don't hesitate to write me:<br />https://nearvear.com/conversationwith.html?S6EGHMIWOKOJss2bEOrSOiNzoYr2<br /><br />Best regards, Sam"
+updateBox.appendChild(updateDescription);
 
 // -----------------------------------------BOTTOM BOX BUTTONS
 
@@ -421,7 +415,6 @@ function addEmail() {
         textarea.value = '';    
         textarea.placeholder = 'Email Added: ' + email;  
     });
-
 }
 
 
@@ -515,8 +508,6 @@ function setSettingsIfNotSet(){
 
 // ----------------------------------------------------- CHECKING SETTINGS AND TOGGLE FUNCTION FOR ALL SETTINGS
 
-
-
 //-------------------------------------------- SHOULD BE USED TO SHOW YOU YOUR EMAIL
 checkEmailInfo()
 function checkEmailInfo(){
@@ -537,8 +528,35 @@ function checkEmailInfo(){
 
 
 
-// ----------------------------------------------------- CHECKING SETTINGS AND TOGGLE FUNCTION FOR ALL SETTINGS ENDS
 
+
+function shareLink(){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let uid = user.uid;
+
+            var copyText = "https://nearvear.com/conversationwith.html?" + uid;
+
+            document.getElementById("buttonToShareProfileID").innerHTML = "Copied";
+
+            // WHAT A FUCKING HACK
+            const copyTextArea = document.createElement('textarea');
+            copyTextArea.value = copyText;
+            document.body.appendChild(copyTextArea);
+            copyTextArea.select();
+            copyTextArea.setSelectionRange(0, 99999)
+            document.execCommand('copy');
+            document.body.removeChild(copyTextArea);
+        }  
+    });
+}
+
+
+
+
+
+
+// ----------------------------------------------------- CHECKING SETTINGS AND TOGGLE FUNCTION FOR ALL SETTINGS ENDS
 
 checkScreenAspect()
 function checkScreenAspect(){
@@ -549,11 +567,8 @@ function checkScreenAspect(){
 
     if(aspectFactor>1){
         document.getElementById("CenteringBoxID").style.width = "33%";
-
         document.getElementById("bottomBoxID").style.width = "calc(33% - 4px)";
-
     } else { // remove topbox for phones
-        // topBox.style.display = "none";
         document.getElementById("bottomBoxID").style.width = "calc(100% - 16px)";
     }
 }

@@ -251,6 +251,16 @@ newFeelingButton:hover {
 
 }
 
+pageDescription {
+
+  display: block;
+  padding: 4px 00px 4px 00px;
+  font-size: calc(10px + (14 - 10) * ((100vw - 300px) / (1800 - 300)));
+  font-family: 'Lexend Exa', sans-serif;
+  line-height: 1.6;
+  
+}
+
 input {
 
     /* outline: red solid 1px; */

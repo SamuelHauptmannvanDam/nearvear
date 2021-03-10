@@ -45,7 +45,7 @@ centeringBox.appendChild(midBox);
 
 //HOME ICON
 const imgLogo = document.createElement('img'); 
-imgLogo.src = '32px.svg'; 
+imgLogo.src = '192px.svg'; 
 imgLogo.style.height = "calc(20px + (30 - 20) * ((100vw - 300px) / (1800 - 300)))";
 imgLogo.onclick = function(){home()};
 topBox.appendChild(imgLogo);

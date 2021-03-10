@@ -49,7 +49,7 @@ centerGrowthBox.appendChild(centeringVerticallyBox);
 
 //HOME ICON
 const img = document.createElement('img'); 
-img.src = '32px.svg'; 
+img.src = '192px.svg'; 
 img.onclick = function(){home()};
 topBox.appendChild(img);
 
@@ -72,7 +72,7 @@ descriptionDeletionButton.onclick = function(){removeDescription()};
 descriptionBox.appendChild(descriptionDeletionButton);
 
 const deviceSpecific = document.createElement('deviceSpecific');
-deviceSpecific.innerHTML = "Your confessions are browser & device specific. <br /> <br />Meaning: If someone answers your confession, you can only find that conversation from the browser on the specific device you posted your confessions from."
+deviceSpecific.innerHTML = "Your confessions are browser & device specific. <br />Meaning: If someone answers your confession, you can only find that conversation from the browser on the specific device you posted your confessions from. <br /><br />UNLESS you upgrade your account"
 descriptionBox.appendChild(deviceSpecific);
 
 
@@ -94,40 +94,19 @@ send.innerText = "Send";
 send.onclick = function(){sendQuestion()};
 centeringVerticallyBox.appendChild(send);
 
+const diary = document.createElement('diary');
+diary.innerText = "Diary";
+diary.onclick = function(){diaryLink()};
+centeringVerticallyBox.appendChild(diary);
 
+function diaryLink(){
+  window.location='diary.html';
+}
 
 const error = document.createElement('error');
 error.id = "error"
 error.innerText = "We'll take care of you!"
 centeringVerticallyBox.appendChild(error);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -259,7 +238,6 @@ function changeConversationsToWhite(){
 function changeConversationsToBlack(){
   conversationsIcon.src = 'conversationsBlack.svg';
 }
-
 
 
 const you = document.createElement('you');
@@ -439,7 +417,17 @@ function sendQuestion() {
             });  
 
 
-
+            // ----------------------- ADD TO DIARY
+            database.ref('Diary').child(uid).child(pushID).set({
+                  
+              message: document.getElementById("myTextArea").value,
+              timestamp: firebase.database.ServerValue.TIMESTAMP,
+              timestampReverse: timestampReverse,
+              language: languageName,
+              messageID: pushID,
+              creatorID: uid,
+              
+          });  
 
         
             }
@@ -494,17 +482,6 @@ function checkDescription(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 checkScreenAspect()
 function checkScreenAspect(){
 
@@ -536,48 +513,7 @@ window.addEventListener('resize', () => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Added for language detection.
-
-
+// ------------------------------------------------------------------------- Added for language detection.
 
 ( function(global) {
 
