@@ -10,8 +10,6 @@ html, body{
 
 body{
   overflow-y: scroll;
-
-  
 }
 
 
@@ -33,7 +31,7 @@ centeringBox{
 }
 
 topBox{
-  outline: red solid 1px;
+  /* outline: red solid 1px; */
   padding-top: 4px;
   border-bottom: 1px solid black; 
 

@@ -340,6 +340,7 @@ function getOnMindItems(){
         forgiveButton.onmouseout = function(){forgiveIconToBlack(forgiveIconID)};
         onMindItemMenuBar.appendChild(forgiveButton);
 
+
         const forgiveIcon = document.createElement('img'); 
         forgiveIcon.src = 'forumBlack.svg'; 
         forgiveIcon.style.height = "calc(30px + (48 - 30) * ((100vw - 300px) / (1800 - 300)))";
@@ -774,6 +775,7 @@ function conversationLink(message, messageID, creatorID) {
       if (snapshot.exists()) {
 
 // ----------------------- Take us to conversation
+
         window.location = 'conversation.html';
 
          } else{ 
